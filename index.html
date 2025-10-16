@@ -3,75 +3,142 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>توابع اکسل پرکاربرد در حسابداری — مرجع سریع</title>
+  <title>توابع اکسل پرکاربرد در حسابداری — مرجع جامع</title>
+  
+  <!-- فونت وزیری -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- آیکون‌ها -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  
   <style>
     :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --accent:#00c2a8;
-      --muted:#9aa7b2;
-      --glass:rgba(255,255,255,0.03);
-      --card-radius:14px;
-      --max-width:1100px;
+      /* رنگ‌های Material Design 3 */
+      --md-sys-color-primary: #00c2a8;
+      --md-sys-color-on-primary: #003730;
+      --md-sys-color-primary-container: #005047;
+      --md-sys-color-on-primary-container: #6fffe6;
+      --md-sys-color-secondary: #b0ccc7;
+      --md-sys-color-on-secondary: #1b3531;
+      --md-sys-color-secondary-container: #334c48;
+      --md-sys-color-on-secondary-container: #cce8e2;
+      --md-sys-color-tertiary: #adc6e8;
+      --md-sys-color-on-tertiary: #153050;
+      --md-sys-color-tertiary-container: #2d4667;
+      --md-sys-color-on-tertiary-container: #d6e3ff;
+      --md-sys-color-error: #ffb4ab;
+      --md-sys-color-on-error: #690005;
+      --md-sys-color-error-container: #93000a;
+      --md-sys-color-on-error-container: #ffb4ab;
+      --md-sys-color-background: #0f1724;
+      --md-sys-color-on-background: #c5e0da;
+      --md-sys-color-surface: #0b1220;
+      --md-sys-color-on-surface: #c5e0da;
+      --md-sys-color-surface-variant: #334c48;
+      --md-sys-color-on-surface-variant: #b2ccc7;
+      --md-sys-color-outline: #7c9792;
+      --md-sys-color-outline-variant: #334c48;
+      --md-sys-color-shadow: #000000;
+      --md-sys-color-scrim: #000000;
+      --md-sys-color-inverse-surface: #c5e0da;
+      --md-sys-color-inverse-on-surface: #1b3531;
+      --md-sys-color-inverse-primary: #006b5d;
+      --md-sys-color-primary-fixed: #6fffe6;
+      --md-sys-color-on-primary-fixed: #00201b;
+      --md-sys-color-primary-fixed-dim: #4dd8c0;
+      --md-sys-color-on-primary-fixed-variant: #005047;
+      --md-sys-color-secondary-fixed: #d6e3ff;
+      --md-sys-color-on-secondary-fixed: #001b35;
+      --md-sys-color-secondary-fixed-dim: #adc6e8;
+      --md-sys-color-on-secondary-fixed-variant: #334c48;
+      --md-sys-color-tertiary-fixed: #d6e3ff;
+      --md-sys-color-on-tertiary-fixed: #001b35;
+      --md-sys-color-tertiary-fixed-dim: #adc6e8;
+      --md-sys-color-on-tertiary-fixed-variant: #2d4667;
+      --md-sys-color-surface-dim: #0b1220;
+      --md-sys-color-surface-bright: #334c48;
+      --md-sys-color-surface-container-lowest: #060d1b;
+      --md-sys-color-surface-container-low: #0f1724;
+      --md-sys-color-surface-container: #0f1724;
+      --md-sys-color-surface-container-high: #1a2430;
+      --md-sys-color-surface-container-highest: #252f3b;
+      
+      /* سایر متغیرها */
+      --card-radius:16px;
+      --max-width:1200px;
+      --transition-speed:0.3s;
     }
+    
     html,body{height:100%}
     body{
       margin:0;
-      font-family: "Vazirmatn", "Tahoma", Arial, sans-serif;
-      background: linear-gradient(180deg,#071028 0%, #071a2a 50%, #0d2935 100%);
-      color:#e6f0f2;
+      font-family: "Vazirmatn", sans-serif;
+      background: linear-gradient(135deg, var(--md-sys-color-background) 0%, var(--md-sys-color-surface-container-low) 100%);
+      color:var(--md-sys-color-on-background);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       display:flex;
       justify-content:center;
-      padding:28px 16px;
+      padding:20px 16px;
+      line-height: 1.6;
     }
 
     .container{
       width:100%;
       max-width:var(--max-width);
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:18px;
-      padding:22px;
-      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
-      border: 1px solid rgba(255,255,255,0.03);
+      background: var(--md-sys-color-surface-container);
+      border-radius:24px;
+      padding:24px;
+      box-shadow: 0 8px 32px rgba(2,6,23,0.7);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      transition: all var(--transition-speed) ease;
     }
 
     header{
       display:flex;
-      gap:16px;
+      gap:20px;
       align-items:center;
-      margin-bottom:18px;
+      margin-bottom:24px;
       flex-wrap:wrap;
+      padding-bottom:16px;
+      border-bottom:1px solid var(--md-sys-color-outline-variant);
     }
     .logo{
-      width:64px;
-      height:64px;
-      border-radius:12px;
-      background:linear-gradient(135deg,var(--accent),#3bd7cf);
+      width:72px;
+      height:72px;
+      border-radius:16px;
+      background:linear-gradient(135deg,var(--md-sys-color-primary), var(--md-sys-color-tertiary));
       display:grid;
       place-items:center;
-      color:#042028;
+      color:var(--md-sys-color-on-primary);
       font-weight:800;
-      font-size:20px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.5);
+      font-size:24px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.4);
+      transition: transform var(--transition-speed) ease;
+    }
+    .logo:hover {
+      transform: scale(1.05);
     }
     h1{
       margin:0;
-      font-size:20px;
-      line-height:1.05;
-      color:#dffbf2;
+      font-size:28px;
+      line-height:1.2;
+      color:var(--md-sys-color-on-surface);
+      font-weight:700;
     }
     p.lead{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
+      margin:8px 0 0 0;
+      color:var(--md-sys-color-on-surface-variant);
+      font-size:15px;
+      font-weight:400;
     }
 
     .controls{
-      margin-top:12px;
+      margin-top:16px;
       display:flex;
-      gap:12px;
+      gap:14px;
       align-items:center;
       flex-wrap:wrap;
     }
@@ -79,123 +146,308 @@
     .search {
       flex:1 1 320px;
       display:flex;
-      gap:8px;
+      gap:10px;
       align-items:center;
-      background:var(--glass);
-      padding:8px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.03);
+      background:var(--md-sys-color-surface-container-low);
+      padding:12px 16px;
+      border-radius:28px;
+      border:1px solid var(--md-sys-color-outline);
+      transition: all var(--transition-speed) ease;
+    }
+    .search:focus-within {
+      border-color: var(--md-sys-color-primary);
+      box-shadow: 0 0 0 3px rgba(0, 194, 168, 0.2);
     }
     .search input{
       background:transparent;
       border:0;
       outline:none;
       color:inherit;
-      padding:8px;
+      padding:0;
       width:100%;
-      font-size:14px;
+      font-size:15px;
+      font-family: inherit;
     }
     .tag{
-      background: rgba(255,255,255,0.02);
-      padding:6px 10px;
-      border-radius:10px;
-      font-size:13px;
-      color:var(--muted);
-      border:1px solid rgba(255,255,255,0.02);
+      background: var(--md-sys-color-primary-container);
+      padding:8px 14px;
+      border-radius:16px;
+      font-size:14px;
+      color:var(--md-sys-color-on-primary-container);
+      border:1px solid var(--md-sys-color-outline);
+      font-weight:500;
     }
 
     main{
-      margin-top:18px;
+      margin-top:24px;
       display:grid;
-      grid-template-columns: 1fr 360px;
-      gap:18px;
+      grid-template-columns: 1fr 380px;
+      gap:24px;
     }
 
     /* left: list */
     .list{
-      background: rgba(255,255,255,0.01);
-      padding:14px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.02);
-      min-height:320px;
+      background: var(--md-sys-color-surface-container-low);
+      padding:20px;
+      border-radius:20px;
+      border:1px solid var(--md-sys-color-outline-variant);
+      min-height:400px;
     }
 
     .group{
-      margin-bottom:14px;
+      margin-bottom:24px;
+      padding-bottom:16px;
+      border-bottom:1px solid var(--md-sys-color-outline-variant);
+    }
+    .group:last-child {
+      border-bottom: none;
     }
     .group h2{
-      margin:0 0 8px 0;
-      font-size:15px;
-      color:#c7fff6;
+      margin:0 0 12px 0;
+      font-size:20px;
+      color:var(--md-sys-color-primary);
       display:flex;
       justify-content:space-between;
       align-items:center;
+      font-weight:600;
     }
     .group p{
-      margin:0 0 8px 0;
-      color:var(--muted);
-      font-size:13px;
+      margin:0 0 16px 0;
+      color:var(--md-sys-color-on-surface-variant);
+      font-size:14px;
+      font-weight:400;
     }
 
     .cards{
       display:grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap:10px;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap:14px;
     }
 
     .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.008));
-      padding:12px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.02);
-      box-shadow: 0 6px 14px rgba(2,6,23,0.6);
-      transition: transform .14s ease, box-shadow .14s;
+      background: var(--md-sys-color-surface-container);
+      padding:16px;
+      border-radius:16px;
+      border:1px solid var(--md-sys-color-outline-variant);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: all var(--transition-speed) ease;
+      position: relative;
+      overflow: hidden;
     }
-    .card:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,0.6); }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--md-sys-color-primary);
+      transform: scaleY(0);
+      transition: transform var(--transition-speed) ease;
+    }
+    .card:hover{ 
+      transform:translateY(-6px); 
+      box-shadow:0 12px 28px rgba(0,0,0,0.4);
+      border-color: var(--md-sys-color-primary);
+    }
+    .card:hover::before {
+      transform: scaleY(1);
+    }
 
     .fn-title{
       display:flex;
       justify-content:space-between;
       gap:8px;
       align-items:center;
-      margin-bottom:8px;
+      margin-bottom:10px;
     }
-    .fn-title b{ font-size:14px; color:#eafff7; }
-    .fn-desc{ color:var(--muted); font-size:13px; margin-bottom:8px; min-height:34px; }
+    .fn-title b{ 
+      font-size:16px; 
+      color:var(--md-sys-color-on-surface);
+      font-weight:600;
+    }
+    .fn-title span {
+      font-size:13px;
+      color:var(--md-sys-color-on-surface-variant);
+      font-family: 'Courier New', monospace;
+    }
+    .fn-desc{ 
+      color:var(--md-sys-color-on-surface-variant); 
+      font-size:14px; 
+      margin-bottom:12px; 
+      min-height:40px;
+      font-weight:400;
+    }
     .fn-ex{
-      background:rgba(0,0,0,0.25);
-      padding:8px;
-      border-radius:8px;
+      background:var(--md-sys-color-surface-container-lowest);
+      padding:12px;
+      border-radius:12px;
       font-family: "Courier New", monospace;
       font-size:13px;
-      color:#dffbf2;
+      color:var(--md-sys-color-on-surface);
       overflow:auto;
-      border:1px solid rgba(255,255,255,0.02);
+      border:1px solid var(--md-sys-color-outline-variant);
+      direction: ltr;
+      text-align: left;
     }
 
     /* right: cheat sheet */
     aside{
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
-      padding:14px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.02);
+      background: var(--md-sys-color-surface-container-low);
+      padding:20px;
+      border-radius:20px;
+      border:1px solid var(--md-sys-color-outline-variant);
       height:fit-content;
+      position: sticky;
+      top:20px;
     }
-    .aside-title{ font-size:14px; margin:0 0 10px 0; color:#dffbf2; }
-    ul.tip{ padding-left:18px; margin:0; color:var(--muted); font-size:13px; }
-    ul.tip li{ margin-bottom:8px; line-height:1.45; }
+    .aside-title{ 
+      font-size:18px; 
+      margin:0 0 16px 0; 
+      color:var(--md-sys-color-primary);
+      font-weight:600;
+    }
+    ul.tip{ 
+      padding-right:20px; 
+      margin:0; 
+      color:var(--md-sys-color-on-surface-variant); 
+      font-size:14px;
+    }
+    ul.tip li{ 
+      margin-bottom:12px; 
+      line-height:1.5;
+      position: relative;
+    }
+    ul.tip li::before {
+      content: '•';
+      position: absolute;
+      right: -20px;
+      color: var(--md-sys-color-primary);
+      font-weight: bold;
+    }
 
     footer{
-      margin-top:16px;
+      margin-top:24px;
       text-align:center;
-      color:var(--muted);
-      font-size:13px;
+      color:var(--md-sys-color-on-surface-variant);
+      font-size:14px;
+      padding-top:16px;
+      border-top:1px solid var(--md-sys-color-outline-variant);
+    }
+    footer a {
+      color: var(--md-sys-color-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity var(--transition-speed) ease;
+    }
+    footer a:hover {
+      opacity: 0.8;
     }
 
     /* responsive */
-    @media (max-width:900px){
+    @media (max-width:968px){
       main{ grid-template-columns: 1fr; }
       aside{ order:2; }
+    }
+    
+    @media (max-width:600px){
+      .cards {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search {
+        width: 100%;
+      }
+    }
+    
+    /* انیمیشن‌ها */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .card {
+      animation: fadeIn 0.5s ease forwards;
+    }
+    
+    /* اسنک‌بار برای کپی */
+    .snackbar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--md-sys-color-inverse-surface);
+      color: var(--md-sys-color-inverse-on-surface);
+      padding: 12px 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 1000;
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    .snackbar.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    
+    /* دکمه‌ها */
+    .btn {
+      background: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      border: none;
+      padding: 10px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition-speed) ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .btn:hover {
+      background: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    /* فیلترها */
+    .filter-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      background: var(--md-sys-color-surface-container-low);
+      color: var(--md-sys-color-on-surface-variant);
+      border: 1px solid var(--md-sys-color-outline);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all var(--transition-speed) ease;
+    }
+    
+    .filter-btn:hover {
+      border-color: var(--md-sys-color-primary);
+    }
+    
+    .filter-btn.active {
+      background: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      border-color: var(--md-sys-color-primary);
     }
   </style>
 </head>
@@ -204,14 +456,11 @@
     <header>
       <div class="logo">EX</div>
       <div>
-        <h1>توابع اکسل ویژه حسابداری — مرجع سریع</h1>
-        <p class="lead">مهم‌ترین فرمول‌ها و کاربرد آن‌ها در حسابداری، انبار، گزارش‌گیری مالی و کنترل هزینه.</p>
-        <div class="controls" style="margin-top:8px">
+        <h1>توابع اکسل ویژه حسابداری — مرجع جامع</h1>
+        <p class="lead">مهم‌ترین فرمول‌ها و کاربرد آن‌ها در حسابداری، انبار، گزارش‌گیری مالی و کنترل هزینه</p>
+        <div class="controls" style="margin-top:12px">
           <div class="search" aria-hidden="false">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:0.8">
-              <path d="M21 21l-4.35-4.35" stroke="white" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round"/>
-              <circle cx="11" cy="11" r="6" stroke="white" stroke-opacity="0.7" stroke-width="1.5"/>
-            </svg>
+            <i class="ri-search-line" style="opacity:0.8; font-size:18px;"></i>
             <input id="search" placeholder="جستجو (نام تابع / کاربرد / مثال) ..." />
           </div>
           <div class="tag">حسابداری · مالی · گزارش</div>
@@ -228,26 +477,38 @@
           <div class="cards">
             <div class="card" data-keywords="sum جمع مجموع هزینه فروش">
               <div class="fn-title"><b>SUM</b><span>SUM(range)</span></div>
-              <div class="fn-desc">جمع ساده یک بازه — پایه‌ی اکثر گزارش‌های مالی.</div>
+              <div class="fn-desc">جمع ساده یک بازه — پایه‌ی اکثر گزارش‌های مالی</div>
               <div class="fn-ex">مثال: <code>=SUM(B2:B120)</code></div>
             </div>
 
             <div class="card" data-keywords="subtotal جمع جزئی فیلتر شده SUBTOTAL">
               <div class="fn-title"><b>SUBTOTAL</b><span>SUBTOTAL(func_code, range)</span></div>
-              <div class="fn-desc">محاسبهٔ جمع/میانگین/... که ردیف‌های فیلتر شده را نادیده می‌گیرد — مناسب برای لیست‌های پویا.</div>
+              <div class="fn-desc">محاسبهٔ جمع/میانگین/... که ردیف‌های فیلتر شده را نادیده می‌گیرد — مناسب برای لیست‌های پویا</div>
               <div class="fn-ex">مثال: <code>=SUBTOTAL(9, C2:C500)  /* 9 = SUM */</code></div>
             </div>
 
             <div class="card" data-keywords="sumif شرطی SUMIF SUMIFS">
               <div class="fn-title"><b>SUMIF / SUMIFS</b><span>SUMIF(range, criteria, [sum_range])</span></div>
-              <div class="fn-desc">جمع شرطی — SUMIF برای یک شرط، SUMIFS برای چند شرط (مثلاً جمع فروش یک مشتری یا برای یک تاریخ خاص).</div>
+              <div class="fn-desc">جمع شرطی — SUMIF برای یک شرط، SUMIFS برای چند شرط (مثلاً جمع فروش یک مشتری یا برای یک تاریخ خاص)</div>
               <div class="fn-ex">مثال: <code>=SUMIFS(D:D, A:A,"فروش", B:B,">=2025-01-01")</code></div>
             </div>
 
             <div class="card" data-keywords="count شمارش COUNT COUNTA COUNTIF">
               <div class="fn-title"><b>COUNT / COUNTA / COUNTIF</b><span>COUNT(range)</span></div>
-              <div class="fn-desc">شمارش سطرها: COUNT برای اعداد، COUNTA برای هر نوع داده، COUNTIF برای شرط.</div>
+              <div class="fn-desc">شمارش سطرها: COUNT برای اعداد، COUNTA برای هر نوع داده، COUNTIF برای شرط</div>
               <div class="fn-ex">مثال: <code>=COUNTIF(E:E, "پرداخت‌شده")</code></div>
+            </div>
+
+            <div class="card" data-keywords="average میانگین AVERAGE AVERAGEIF">
+              <div class="fn-title"><b>AVERAGE / AVERAGEIF</b><span>AVERAGE(range)</span></div>
+              <div class="fn-desc">محاسبه میانگین — AVERAGEIF برای میانگین شرطی (مثلاً میانگین فروش یک محصول خاص)</div>
+              <div class="fn-ex">مثال: <code>=AVERAGEIF(C:C, "محصول الف", D:D)</code></div>
+            </div>
+
+            <div class="card" data-keywords="max min بیشترین کمترین MAX MIN">
+              <div class="fn-title"><b>MAX / MIN</b><span>MAX(range)</span></div>
+              <div class="fn-desc">یافتن بیشترین یا کمترین مقدار در یک بازه — مفید برای تحلیل داده‌های مالی</div>
+              <div class="fn-ex">مثال: <code>=MAX(E2:E100)</code></div>
             </div>
           </div>
         </div>
@@ -259,20 +520,32 @@
           <div class="cards">
             <div class="card" data-keywords="vlookup جستجوی عمودی VLOOKUP">
               <div class="fn-title"><b>VLOOKUP</b><span>VLOOKUP(value, table, col_index, [range_lookup])</span></div>
-              <div class="fn-desc">جستجوی عمودی؛ برای پیدا کردن اطلاعات مشتری، نام کالا و... (ترجیحاً از XLOOKUP استفاده کن).</div>
+              <div class="fn-desc">جستجوی عمودی؛ برای پیدا کردن اطلاعات مشتری، نام کالا و... (ترجیحاً از XLOOKUP استفاده کن)</div>
               <div class="fn-ex">مثال: <code>=VLOOKUP(G2, Products!A:C, 3, FALSE)</code></div>
             </div>
 
             <div class="card" data-keywords="xlookup xlookup جایگزین vlookup">
               <div class="fn-title"><b>XLOOKUP</b><span>XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode])</span></div>
-              <div class="fn-desc">نسخهٔ مدرن‌تر و انعطاف‌پذیرتر از VLOOKUP/HLOOKUP (جستجوی به سمت چپ، مقدار پیش‌فرض و ...).</div>
+              <div class="fn-desc">نسخهٔ مدرن‌تر و انعطاف‌پذیرتر از VLOOKUP/HLOOKUP (جستجوی به سمت چپ، مقدار پیش‌فرض و ...)</div>
               <div class="fn-ex">مثال: <code>=XLOOKUP(F2, Customers!A:A, Customers!B:B, "یافت نشد")</code></div>
             </div>
 
             <div class="card" data-keywords="index match index match ترکیب">
               <div class="fn-title"><b>INDEX + MATCH</b><span>INDEX(range, MATCH(...))</span></div>
-              <div class="fn-desc">ترکیب قدرتمند برای جستجوی قابل‌اطمینان و انعطاف‌پذیر (به‌جای VLOOKUP در جداول بزرگ).</div>
+              <div class="fn-desc">ترکیب قدرتمند برای جستجوی قابل‌اطمینان و انعطاف‌پذیر (به‌جای VLOOKUP در جداول بزرگ)</div>
               <div class="fn-ex">مثال: <code>=INDEX(Products!C:C, MATCH(H2, Products!A:A, 0))</code></div>
+            </div>
+
+            <div class="card" data-keywords="hlookup جستجوی افقی HLOOKUP">
+              <div class="fn-title"><b>HLOOKUP</b><span>HLOOKUP(value, table, row_index, [range_lookup])</span></div>
+              <div class="fn-desc">جستجوی افقی؛ برای داده‌هایی که در ردیف‌ها سازماندهی شده‌اند</div>
+              <div class="fn-ex">مثال: <code>=HLOOKUP(A2, Prices!A1:Z10, 3, FALSE)</code></div>
+            </div>
+
+            <div class="card" data-keywords="offset جابجایی OFFSET">
+              <div class="fn-title"><b>OFFSET</b><span>OFFSET(reference, rows, cols, [height], [width])</span></div>
+              <div class="fn-desc">ایجاد یک مرجع به یک سلول یا محدوده که از یک سلول مشخص جابجا شده است</div>
+              <div class="fn-ex">مثال: <code>=SUM(OFFSET(A1, 1, 2, 5, 1))</code></div>
             </div>
           </div>
         </div>
@@ -284,20 +557,56 @@
           <div class="cards">
             <div class="card" data-keywords="npv ارزش فعلی خالص NPV">
               <div class="fn-title"><b>NPV</b><span>NPV(rate, value1, [value2], ...)</span></div>
-              <div class="fn-desc">محاسبه ارزش فعلی خالص جریانات نقدی — کاربرد در تحلیل سرمایه‌گذاری‌ها.</div>
+              <div class="fn-desc">محاسبه ارزش فعلی خالص جریانات نقدی — کاربرد در تحلیل سرمایه‌گذاری‌ها</div>
               <div class="fn-ex">مثال: <code>=NPV(0.12, C2:C6) + C1  /* C1 = جریان اولیه */</code></div>
             </div>
 
             <div class="card" data-keywords="irr نرخ بازده داخلی IRR">
               <div class="fn-title"><b>IRR</b><span>IRR(values, [guess])</span></div>
-              <div class="fn-desc">محاسبه نرخ بازده داخلی از یک سری جریان نقدی.</div>
+              <div class="fn-desc">محاسبه نرخ بازده داخلی از یک سری جریان نقدی</div>
               <div class="fn-ex">مثال: <code>=IRR(C1:C6)</code></div>
             </div>
 
             <div class="card" data-keywords="pmnt پرداخت قسط PMT">
               <div class="fn-title"><b>PMT</b><span>PMT(rate, nper, pv, [fv], [type])</span></div>
-              <div class="fn-desc">محاسبه مبلغ قسط برای وام یا تسهیلات.</div>
+              <div class="fn-desc">محاسبه مبلغ قسط برای وام یا تسهیلات</div>
               <div class="fn-ex">مثال: <code>=PMT(0.08/12, 60, -1000000)</code></div>
+            </div>
+
+            <div class="card" data-keywords="pv ارزش فعلی PV">
+              <div class="fn-title"><b>PV</b><span>PV(rate, nper, pmt, [fv], [type])</span></div>
+              <div class="fn-desc">محاسبه ارزش فعلی یک سرمایه‌گذاری یا وام</div>
+              <div class="fn-ex">مثال: <code>=PV(0.06/12, 60, -10000)</code></div>
+            </div>
+
+            <div class="card" data-keywords="fv ارزش آتی FV">
+              <div class="fn-title"><b>FV</b><span>FV(rate, nper, pmt, [pv], [type])</span></div>
+              <div class="fn-desc">محاسبه ارزش آتی یک سرمایه‌گذاری با پرداخت‌های دوره‌ای</div>
+              <div class="fn-ex">مثال: <code>=FV(0.05/12, 120, -500, -10000)</code></div>
+            </div>
+
+            <div class="card" data-keywords="rate نرخ بهره RATE">
+              <div class="fn-title"><b>RATE</b><span>RATE(nper, pmt, pv, [fv], [type], [guess])</span></div>
+              <div class="fn-desc">محاسبه نرخ بهره دوره‌ای برای یک وام یا سرمایه‌گذاری</div>
+              <div class="fn-ex">مثال: <code>=RATE(60, -20000, 1000000)*12</code></div>
+            </div>
+
+            <div class="card" data-keywords="nper تعداد دوره‌ها NPER">
+              <div class="fn-title"><b>NPER</b><span>NPER(rate, pmt, pv, [fv], [type])</span></div>
+              <div class="fn-desc">محاسبه تعداد دوره‌های لازم برای بازپرداخت وام یا رسیدن به هدف سرمایه‌گذاری</div>
+              <div class="fn-ex">مثال: <code>=NPER(0.06/12, -500, -10000, 100000)</code></div>
+            </div>
+
+            <div class="card" data-keywords="sln استهلاک خط مستقیم SLN">
+              <div class="fn-title"><b>SLN</b><span>SLN(cost, salvage, life)</span></div>
+              <div class="fn-desc">محاسبه استهلاک خط مستقیم برای یک دوره</div>
+              <div class="fn-ex">مثال: <code>=SLN(100000, 10000, 10)</code></div>
+            </div>
+
+            <div class="card" data-keywords="ddb استهلاک کاهشی دو برابری DDB">
+              <div class="fn-title"><b>DDB</b><span>DDB(cost, salvage, life, period, [factor])</span></div>
+              <div class="fn-desc">محاسبه استهلاک کاهشی دو برابری برای یک دوره خاص</div>
+              <div class="fn-ex">مثال: <code>=DDB(100000, 10000, 10, 2)</code></div>
             </div>
           </div>
         </div>
@@ -309,20 +618,44 @@
           <div class="cards">
             <div class="card" data-keywords="datedif اختلاف تاریخ DATEDIF">
               <div class="fn-title"><b>DATEDIF</b><span>DATEDIF(start_date,end_date, "unit")</span></div>
-              <div class="fn-desc">محاسبه اختلاف تاریخ بر حسب روز/ماه/سال — مفید برای حسابرسی دوره‌ها.</div>
+              <div class="fn-desc">محاسبه اختلاف تاریخ بر حسب روز/ماه/سال — مفید برای حسابرسی دوره‌ها</div>
               <div class="fn-ex">مثال: <code>=DATEDIF(A2, B2, "m") /* اختلاف به ماه */</code></div>
             </div>
 
             <div class="card" data-keywords="edate افزودن ماه EDATE">
               <div class="fn-title"><b>EDATE</b><span>EDATE(start_date, months)</span></div>
-              <div class="fn-desc">افزودن یا کم کردن ماه — محاسبه سررسید اقساط یا قراردادها.</div>
+              <div class="fn-desc">افزودن یا کم کردن ماه — محاسبه سررسید اقساط یا قراردادها</div>
               <div class="fn-ex">مثال: <code>=EDATE(A2, 3) /* 3 ماه بعد */</code></div>
             </div>
 
             <div class="card" data-keywords="today now تاریخ امروز NOW TODAY">
               <div class="fn-title"><b>TODAY / NOW</b><span>TODAY() / NOW()</span></div>
-              <div class="fn-desc">TODAY تاریخ امروز؛ NOW تاریخ و زمان کنونی — برای گزارش‌های روزانه و لاگ‌ها.</div>
+              <div class="fn-desc">TODAY تاریخ امروز؛ NOW تاریخ و زمان کنونی — برای گزارش‌های روزانه و لاگ‌ها</div>
               <div class="fn-ex">مثال: <code>=IF(D2 <= TODAY(),"سررسید","فعال")</code></div>
+            </div>
+
+            <div class="card" data-keywords="eomonth پایان ماه EOMONTH">
+              <div class="fn-title"><b>EOMONTH</b><span>EOMONTH(start_date, months)</span></div>
+              <div class="fn-desc">محاسبه تاریخ آخرین روز ماه — مفید برای گزارش‌های ماهانه و سررسیدها</div>
+              <div class="fn-ex">مثال: <code>=EOMONTH(TODAY(), 1) /* پایان ماه آینده */</code></div>
+            </div>
+
+            <div class="card" data-keywords="workday روز کاری WORKDAY">
+              <div class="fn-title"><b>WORKDAY</b><span>WORKDAY(start_date, days, [holidays])</span></div>
+              <div class="fn-desc">محاسبه تاریخ پس از تعداد مشخصی روزهای کاری</div>
+              <div class="fn-ex">مثال: <code>=WORKDAY(TODAY(), 10, Holidays!A2:A20)</code></div>
+            </div>
+
+            <div class="card" data-keywords="networkdays تعداد روزهای کاری NETWORKDAYS">
+              <div class="fn-title"><b>NETWORKDAYS</b><span>NETWORKDAYS(start_date, end_date, [holidays])</span></div>
+              <div class="fn-desc">محاسبه تعداد روزهای کاری بین دو تاریخ</div>
+              <div class="fn-ex">مثال: <code>=NETWORKDAYS(A2, B2, Holidays!A2:A20)</code></div>
+            </div>
+
+            <div class="card" data-keywords="year month day سال ماه روز YEAR MONTH DAY">
+              <div class="fn-title"><b>YEAR / MONTH / DAY</b><span>YEAR(serial_number)</span></div>
+              <div class="fn-desc">استخراج سال، ماه یا روز از یک تاریخ</div>
+              <div class="fn-ex">مثال: <code>=MONTH(A2) /* استخراج ماه */</code></div>
             </div>
           </div>
         </div>
@@ -334,20 +667,38 @@
           <div class="cards">
             <div class="card" data-keywords="if شرط IF">
               <div class="fn-title"><b>IF</b><span>IF(condition, value_if_true, value_if_false)</span></div>
-              <div class="fn-desc">اساس چک‌های منطقی و تصمیم‌گیری در سلول‌ها.</div>
+              <div class="fn-desc">اساس چک‌های منطقی و تصمیم‌گیری در سلول‌ها</div>
               <div class="fn-ex">مثال: <code>=IF(E2>0, "بدهکار", "بستانکار")</code></div>
             </div>
 
             <div class="card" data-keywords="ifs چند شرط IFS">
               <div class="fn-title"><b>IFS</b><span>IFS(cond1, val1, cond2, val2, ...)</span></div>
-              <div class="fn-desc">جایگزین سلسله‌ای برای تو در توهای IF؛ خواناتر برای چند شرط.</div>
+              <div class="fn-desc">جایگزین سلسله‌ای برای تو در توهای IF؛ خواناتر برای چند شرط</div>
               <div class="fn-ex">مثال: <code>=IFS(B2>=90,"عالی", B2>=75,"خوب", TRUE,"نیاز به بررسی")</code></div>
             </div>
 
             <div class="card" data-keywords="iferror خطا IFERROR">
               <div class="fn-title"><b>IFERROR</b><span>IFERROR(value, value_if_error)</span></div>
-              <div class="fn-desc">نمایش مقدار جایگزین به‌جای خطا (مثلاً تقسیم بر صفر یا جستجوی ناموفق).</div>
+              <div class="fn-desc">نمایش مقدار جایگزین به‌جای خطا (مثلاً تقسیم بر صفر یا جستجوی ناموفق)</div>
               <div class="fn-ex">مثال: <code>=IFERROR(A2/B2, 0)</code></div>
+            </div>
+
+            <div class="card" data-keywords="and or و یا AND OR">
+              <div class="fn-title"><b>AND / OR</b><span>AND(condition1, condition2, ...)</span></div>
+              <div class="fn-desc">برای ترکیب چند شرط در یک تابع IF یا سایر توابع شرطی</div>
+              <div class="fn-ex">مثال: <code>=IF(AND(A2>100, B2="تایید شده"), "مجاز", "غیرمجاز")</code></div>
+            </div>
+
+            <div class="card" data-keywords="not نقیض NOT">
+              <div class="fn-title"><b>NOT</b><span>NOT(logical)</span></div>
+              <div class="fn-desc">برای معکوس کردن نتیجه یک شرط</div>
+              <div class="fn-ex">مثال: <code>=IF(NOT(A2="لغو شده"), "فعال", "غیرفعال")</code></div>
+            </div>
+
+            <div class="card" data-keywords="switch SWITCH">
+              <div class="fn-title"><b>SWITCH</b><span>SWITCH(expression, value1, result1, [default])</span></div>
+              <div class="fn-desc">ارزیابی یک عبارت در برابر لیستی از مقادیر و بازگرداندن نتیجه متناظر</div>
+              <div class="fn-ex">مثال: <code>=SWITCH(A2, 1, "یک", 2, "دو", "عدد نامعتبر")</code></div>
             </div>
           </div>
         </div>
@@ -359,7 +710,7 @@
           <div class="cards">
             <div class="card" data-keywords="text قالب بندی TEXT">
               <div class="fn-title"><b>TEXT</b><span>TEXT(value, format_text)</span></div>
-              <div class="fn-desc">قالب‌دهی عدد به متن (مناسب برای گزارش‌ها و چاپ فاکتور).</div>
+              <div class="fn-desc">قالب‌دهی عدد به متن (مناسب برای گزارش‌ها و چاپ فاکتور)</div>
               <div class="fn-ex">مثال: <code>=TEXT(A2,"#,##0.00")</code></div>
             </div>
 
@@ -371,8 +722,38 @@
 
             <div class="card" data-keywords="trim پاکسازی TRIM">
               <div class="fn-title"><b>TRIM</b><span>TRIM(text)</span></div>
-              <div class="fn-desc">حذف فاصله‌های اضافی — مهم قبل از جستجو/مچ‌کردن نام‌ها.</div>
+              <div class="fn-desc">حذف فاصله‌های اضافی — مهم قبل از جستجو/مچ‌کردن نام‌ها</div>
               <div class="fn-ex">مثال: <code>=TRIM(C2)</code></div>
+            </div>
+
+            <div class="card" data-keywords="left right mid چپ راست وسط LEFT RIGHT MID">
+              <div class="fn-title"><b>LEFT / RIGHT / MID</b><span>LEFT(text, num_chars)</span></div>
+              <div class="fn-desc">استخراج کاراکترها از سمت چپ، راست یا وسط یک متن</div>
+              <div class="fn-ex">مثال: <code>=LEFT(A2, 3) /* 3 کاراکتر اول */</code></div>
+            </div>
+
+            <div class="card" data-keywords="len طول LEN">
+              <div class="fn-title"><b>LEN</b><span>LEN(text)</span></div>
+              <div class="fn-desc">محاسبه تعداد کاراکترهای یک متن</div>
+              <div class="fn-ex">مثال: <code>=LEN(A2)</code></div>
+            </div>
+
+            <div class="card" data-keywords="find search جستجو FIND SEARCH">
+              <div class="fn-title"><b>FIND / SEARCH</b><span>FIND(find_text, within_text, [start_num])</span></div>
+              <div class="fn-desc">پیدا کردن موقعیت یک متن در متن دیگر (FIND حساس به بزرگی و کوچکی حروف است)</div>
+              <div class="fn-ex">مثال: <code>=FIND("@", A2) /* پیدا کردن موقعیت @ */</code></div>
+            </div>
+
+            <div class="card" data-keywords="replace substitute جایگزینی REPLACE SUBSTITUTE">
+              <div class="fn-title"><b>REPLACE / SUBSTITUTE</b><span>REPLACE(old_text, start_num, num_chars, new_text)</span></div>
+              <div class="fn-desc">جایگزینی بخشی از متن با متن جدید</div>
+              <div class="fn-ex">مثال: <code>=SUBSTITUTE(A2, "قدیمی", "جدید")</code></div>
+            </div>
+
+            <div class="card" data-keywords="upper lower proper بزرگ کوچک حرف اول بزرگ UPPER LOWER PROPER">
+              <div class="fn-title"><b>UPPER / LOWER / PROPER</b><span>UPPER(text)</span></div>
+              <div class="fn-desc">تبدیل متن به حروف بزرگ، کوچک یا حرف اول هر کلمه بزرگ</div>
+              <div class="fn-ex">مثال: <code>=PROPER(A2) /* حرف اول هر کلمه بزرگ */</code></div>
             </div>
           </div>
         </div>
@@ -384,20 +765,32 @@
           <div class="cards">
             <div class="card" data-keywords="round گرد کردن ROUND">
               <div class="fn-title"><b>ROUND</b><span>ROUND(number, num_digits)</span></div>
-              <div class="fn-desc">گرد کردن عدد به تعداد اعشار مشخص — استفاده در مالیات و مبلغ نهایی.</div>
+              <div class="fn-desc">گرد کردن عدد به تعداد اعشار مشخص — استفاده در مالیات و مبلغ نهایی</div>
               <div class="fn-ex">مثال: <code>=ROUND(E2, 0) /* گرد به تومان */</code></div>
             </div>
 
             <div class="card" data-keywords="roundup rounddown">
               <div class="fn-title"><b>ROUNDUP / ROUNDDOWN</b><span>ROUNDUP(number, num_digits)</span></div>
-              <div class="fn-desc">گرد به بالا یا پایین — مثلاً در محاسبه سررسید یا تخمین‌های عملیاتی.</div>
+              <div class="fn-desc">گرد به بالا یا پایین — مثلاً در محاسبه سررسید یا تخمین‌های عملیاتی</div>
               <div class="fn-ex">مثال: <code>=ROUNDUP(F2, 0)</code></div>
             </div>
 
             <div class="card" data-keywords="mround چندگان MROUND">
               <div class="fn-title"><b>MROUND</b><span>MROUND(number, multiple)</span></div>
-              <div class="fn-desc">گرد کردن به نزدیکترین چندگان (مثلاً واحد پول یا بسته‌بندی).</div>
+              <div class="fn-desc">گرد کردن به نزدیکترین چندگان (مثلاً واحد پول یا بسته‌بندی)</div>
               <div class="fn-ex">مثال: <code>=MROUND(G2, 1000)</code></div>
+            </div>
+
+            <div class="card" data-keywords="int بخش صحیح INT">
+              <div class="fn-title"><b>INT</b><span>INT(number)</span></div>
+              <div class="fn-desc">گرد کردن عدد به سمت پایین به نزدیک‌ترین عدد صحیح</div>
+              <div class="fn-ex">مثال: <code>=INT(A2)</code></div>
+            </div>
+
+            <div class="card" data-keywords="mod باقیمانده MOD">
+              <div class="fn-title"><b>MOD</b><span>MOD(number, divisor)</span></div>
+              <div class="fn-desc">محاسبه باقیمانده تقسیم — مفید برای محاسبات دوره‌ای</div>
+              <div class="fn-ex">مثال: <code>=MOD(A2, 12) /* باقیمانده تقسیم بر 12 */</code></div>
             </div>
           </div>
         </div>
@@ -409,20 +802,87 @@
           <div class="cards">
             <div class="card" data-keywords="pivot table pivot جدول محوری">
               <div class="fn-title"><b>Pivot Table</b><span>—</span></div>
-              <div class="fn-desc">ابزار قدرتمند جمع‌بندی، گروه‌بندی و تهیه گزارش‌های ترکیبی (از منوی Insert).</div>
-              <div class="fn-ex">نکته: از Pivot به‌علاوه توابع GETPIVOTDATA برای استخراج مقادیر استفاده کن.</div>
+              <div class="fn-desc">ابزار قدرتمند جمع‌بندی، گروه‌بندی و تهیه گزارش‌های ترکیبی (از منوی Insert)</div>
+              <div class="fn-ex">نکته: از Pivot به‌علاوه توابع GETPIVOTDATA برای استخراج مقادیر استفاده کن</div>
             </div>
 
             <div class="card" data-keywords="sumproduct ضرب مجموع SUMPRODUCT">
               <div class="fn-title"><b>SUMPRODUCT</b><span>SUMPRODUCT(array1, [array2], ...)</span></div>
-              <div class="fn-desc">مجموع حاصل‌ضرب آرایه‌ها — مناسب محاسبه هزینه کل از مقدار × قیمت با شرط.</div>
+              <div class="fn-desc">مجموع حاصل‌ضرب آرایه‌ها — مناسب محاسبه هزینه کل از مقدار × قیمت با شرط</div>
               <div class="fn-ex">مثال: <code>=SUMPRODUCT((A2:A100="مواد")*(C2:C100)*(D2:D100))</code></div>
             </div>
 
             <div class="card" data-keywords="filter فیلتر dynamic FILTER">
               <div class="fn-title"><b>FILTER (نسخۀ جدید)</b><span>FILTER(array, include, [if_empty])</span></div>
-              <div class="fn-desc">فیلتر دینامیک داده‌ها بدون نیاز به جدول محوری — در نسخه‌های جدید Excel.</div>
+              <div class="fn-desc">فیلتر دینامیک داده‌ها بدون نیاز به جدول محوری — در نسخه‌های جدید Excel</div>
               <div class="fn-ex">مثال: <code>=FILTER(Table1, Table1[وضعیت]="باز")</code></div>
+            </div>
+
+            <div class="card" data-keywords="unique منحصر به فرد UNIQUE">
+              <div class="fn-title"><b>UNIQUE (نسخۀ جدید)</b><span>UNIQUE(array, [by_col], [exactly_once])</span></div>
+              <div class="fn-desc">استخراج مقادیر منحصر به فرد از یک محدوده</div>
+              <div class="fn-ex">مثال: <code>=UNIQUE(A2:A100)</code></div>
+            </div>
+
+            <div class="card" data-keywords="sort مرتب‌سازی SORT">
+              <div class="fn-title"><b>SORT (نسخۀ جدید)</b><span>SORT(array, [sort_index], [sort_order], [by_col])</span></div>
+              <div class="fn-desc">مرتب‌سازی یک محدوده یا آرایه</div>
+              <div class="fn-ex">مثال: <code>=SORT(A2:C100, 3, -1) /* مرتب‌سازی بر اساس ستون سوم به صورت نزولی */</code></div>
+            </div>
+
+            <div class="card" data-keywords="sortby مرتب‌سازی با معیار SORTBY">
+              <div class="fn-title"><b>SORTBY (نسخۀ جدید)</b><span>SORTBY(array, by_array1, [sort_order1], ...)</span></div>
+              <div class="fn-desc">مرتب‌سازی یک محدوده بر اساس محدوده‌های دیگر</div>
+              <div class="fn-ex">مثال: <code>=SORTBY(A2:A100, B2:B100, 1, C2:C100, -1)</code></div>
+            </div>
+
+            <div class="card" data-keywords="getpivotdata داده‌های پیوت GETPIVOTDATA">
+              <div class="fn-title"><b>GETPIVOTDATA</b><span>GETPIVOTDATA(data_field, pivot_table, [field1, item1], ...)</span></div>
+              <div class="fn-desc">استخراج داده‌ها از یک جدول محوری</div>
+              <div class="fn-ex">مثال: <code>=GETPIVOTDATA("فروش", $A$3, "محصول", "محصول الف")</code></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group: اطلاعات و خطاها -->
+        <div class="group" data-group="information">
+          <h2>توابع اطلاعاتی و خطاها</h2>
+          <p>برای بررسی نوع داده، سلول‌های خالی و مدیریت خطاها</p>
+          <div class="cards">
+            <div class="card" data-keywords="isblank خالی بودن ISBLANK">
+              <div class="fn-title"><b>ISBLANK</b><span>ISBLANK(value)</span></div>
+              <div class="fn-desc">بررسی خالی بودن یک سلول</div>
+              <div class="fn-ex">مثال: <code>=IF(ISBLANK(A2), "خالی", "مقدار دارد")</code></div>
+            </div>
+
+            <div class="card" data-keywords="iserror خطا ISERROR">
+              <div class="fn-title"><b>ISERROR</b><span>ISERROR(value)</span></div>
+              <div class="fn-desc">بررسی خطا بودن یک مقدار</div>
+              <div class="fn-ex">مثال: <code>=IF(ISERROR(A2/B2), "خطا", A2/B2)</code></div>
+            </div>
+
+            <div class="card" data-keywords="isnumber عدد بودن ISNUMBER">
+              <div class="fn-title"><b>ISNUMBER</b><span>ISNUMBER(value)</span></div>
+              <div class="fn-desc">بررسی عدد بودن یک مقدار</div>
+              <div class="fn-ex">مثال: <code>=IF(ISNUMBER(A2), "عدد", "غیرعدد")</code></div>
+            </div>
+
+            <div class="card" data-keywords="istext متن بودن ISTEXT">
+              <div class="fn-title"><b>ISTEXT</b><span>ISTEXT(value)</span></div>
+              <div class="fn-desc">بررسی متن بودن یک مقدار</div>
+              <div class="fn-ex">مثال: <code>=IF(ISTEXT(A2), "متن", "غیرمتن")</code></div>
+            </div>
+
+            <div class="card" data-keywords="na در دسترس نبودن NA">
+              <div class="fn-title"><b>NA</b><span>NA()</span></div>
+              <div class="fn-desc">ایجاد خطای #N/A برای نشان دادن مقدار در دسترس نبودن</div>
+              <div class="fn-ex">مثال: <code>=IF(A2="", NA(), A2)</code></div>
+            </div>
+
+            <div class="card" data-keywords="cell اطلاعات سلول CELL">
+              <div class="fn-title"><b>CELL</b><span>CELL(info_type, [reference])</span></div>
+              <div class="fn-desc">استخراج اطلاعات درباره قالب، موقعیت یا محتوای یک سلول</div>
+              <div class="fn-ex">مثال: <code>=CELL("format", A2) /* فرمت سلول A2 */</code></div>
             </div>
           </div>
         </div>
@@ -432,32 +892,53 @@
       <aside>
         <div class="aside-title">نکات کلیدی برای حسابداران</div>
         <ul class="tip">
-          <li><strong>همیشه</strong> داده‌ها را با <code>TRIM</code> و فرمت صحیح تاریخ پاکسازی کن تا جستجوها دقیق باشند.</li>
-          <li>برای جستجوهای پیچیده از <code>XLOOKUP</code> یا ترکیب <code>INDEX+MATCH</code> استفاده کن؛ <code>VLOOKUP</code> محدودیت به ستون سمت چپ دارد.</li>
-          <li>در گزارش‌های مالی از <code>SUBTOTAL</code> و <code>Pivot Table</code> برای نتایج قابل‌اعتماد در حالت فیلتر استفاده کن.</li>
-          <li>استفاده از قالب‌های عددی با <code>TEXT</code> یا Format Cells برای چاپ فاکتور و خروجی گزارش مهم است.</li>
-          <li>برای محاسبه مالیات و محاسبات ماهانه، از توابع تاریخ (<code>EDATE</code>, <code>DATEDIF</code>) به‌دقت استفاده کن.</li>
+          <li><strong>همیشه</strong> داده‌ها را با <code>TRIM</code> و فرمت صحیح تاریخ پاکسازی کن تا جستجوها دقیق باشند</li>
+          <li>برای جستجوهای پیچیده از <code>XLOOKUP</code> یا ترکیب <code>INDEX+MATCH</code> استفاده کن؛ <code>VLOOKUP</code> محدودیت به ستون سمت چپ دارد</li>
+          <li>در گزارش‌های مالی از <code>SUBTOTAL</code> و <code>Pivot Table</code> برای نتایج قابل‌اعتماد در حالت فیلتر استفاده کن</li>
+          <li>استفاده از قالب‌های عددی با <code>TEXT</code> یا Format Cells برای چاپ فاکتور و خروجی گزارش مهم است</li>
+          <li>برای محاسبه مالیات و محاسبات ماهانه، از توابع تاریخ (<code>EDATE</code>, <code>DATEDIF</code>) به‌دقت استفاده کن</li>
+          <li>برای تحلیل‌های پیشرفته، از توابع جدید اکسل مانند <code>FILTER</code>, <code>SORT</code>, <code>UNIQUE</code> استفاده کن</li>
+          <li>برای جلوگیری از خطا در محاسبات، از <code>IFERROR</code> و توابع <code>IS</code> مانند <code>ISNUMBER</code> استفاده کن</li>
+          <li>برای گرد کردن مقادیر مالی، از <code>ROUND</code> به جای قالب‌بندی سلول استفاده کن تا در محاسبات بعدی دقت حفظ شود</li>
         </ul>
 
-        <hr style="border-color:rgba(255,255,255,0.03); margin:12px 0;" />
+        <hr style="border-color:var(--md-sys-color-outline-variant); margin:16px 0;" />
 
-        <div style="font-size:13px;color:var(--muted)">
+        <div style="font-size:14px;color:var(--md-sys-color-on-surface-variant)">
           برای استفاده سریع: <br/>
-          - تایپ بخشی از نام تابع در کادر بالا برای فیلتر لیست. <br/>
-          - روی هر مثال کلیک کن تا کپی شود.
+          - تایپ بخشی از نام تابع در کادر بالا برای فیلتر لیست <br/>
+          - روی هر مثال کلیک کن تا کپی شود
+        </div>
+        
+        <div class="filter-container" style="margin-top:16px">
+          <button class="filter-btn active" data-filter="all">همه</button>
+          <button class="filter-btn" data-filter="aggregation">جمع و خلاصه‌سازی</button>
+          <button class="filter-btn" data-filter="lookup">جست‌وجو و مرجع</button>
+          <button class="filter-btn" data-filter="financial">مالی</button>
+          <button class="filter-btn" data-filter="date">تاریخ و زمان</button>
+          <button class="filter-btn" data-filter="conditional">شرطی و منطقی</button>
+          <button class="filter-btn" data-filter="text">متنی</button>
+          <button class="filter-btn" data-filter="rounding">گردکردن</button>
+          <button class="filter-btn" data-filter="analysis">تحلیل داده</button>
+          <button class="filter-btn" data-filter="information">اطلاعاتی</button>
         </div>
       </aside>
     </main>
 
     <footer>
-      اگر می‌خواهی این صفحه را با توابع خاص شرکتت سفارشی کنم یا فایل PDF خلاصه بسازم، بگو تا انجام دهم ✅
+      طراحی و توسعه توسط <a href="https://example.com" target="_blank">احسان فضلی</a> © 2023 - تمامی حقوق محفوظ است
     </footer>
   </div>
+
+  <!-- اسنک‌بار برای نمایش پیام‌ها -->
+  <div class="snackbar" id="snackbar">کپی شد!</div>
 
   <script>
     // جستجو و فیلتر زنده
     const search = document.getElementById('search');
     const cards = Array.from(document.querySelectorAll('.card'));
+    const groups = Array.from(document.querySelectorAll('.group'));
+    
     search.addEventListener('input', e => {
       const q = e.target.value.trim().toLowerCase();
       cards.forEach(card => {
@@ -468,6 +949,12 @@
         const found = [title,desc,ex,keywords].some(s => s.includes(q));
         card.style.display = q === '' || found ? '' : 'none';
       });
+      
+      // مخفی کردن گروه‌های خالی
+      groups.forEach(group => {
+        const visibleCards = group.querySelectorAll('.card:not([style*="display: none"])');
+        group.style.display = visibleCards.length > 0 ? '' : 'none';
+      });
     });
 
     // کپی ساده هنگام کلیک روی مثال
@@ -477,13 +964,83 @@
       el.addEventListener('click', () => {
         const txt = el.innerText.replace('مثال:','').trim();
         navigator.clipboard?.writeText(txt).then(() => {
-          el.style.outline = '2px solid rgba(0,194,168,0.18)';
-          setTimeout(()=> el.style.outline = 'none', 800);
+          showSnackbar('کپی شد!');
         }).catch(()=> {
           // fallback
-          alert('لطفاً متن را دستی کپی کنید:\n' + txt);
+          showSnackbar('خطا در کپی! لطفاً دستی کپی کنید.');
         });
       });
+    });
+    
+    // نمایش اسنک‌بار
+    function showSnackbar(message) {
+      const snackbar = document.getElementById('snackbar');
+      snackbar.textContent = message;
+      snackbar.classList.add('show');
+      
+      setTimeout(() => {
+        snackbar.classList.remove('show');
+      }, 3000);
+    }
+    
+    // فیلتر بر اساس گروه
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // فعال کردن دکمه فعلی
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const filter = btn.getAttribute('data-filter');
+        
+        if (filter === 'all') {
+          // نمایش همه کارت‌ها
+          cards.forEach(card => {
+            card.style.display = '';
+          });
+          groups.forEach(group => {
+            group.style.display = '';
+          });
+        } else {
+          // مخفی کردن همه کارت‌ها
+          cards.forEach(card => {
+            card.style.display = 'none';
+          });
+          
+          // نمایش کارت‌های گروه مورد نظر
+          const targetGroup = document.querySelector(`.group[data-group="${filter}"]`);
+          if (targetGroup) {
+            targetGroup.style.display = '';
+            const groupCards = targetGroup.querySelectorAll('.card');
+            groupCards.forEach(card => {
+              card.style.display = '';
+            });
+          }
+        }
+      });
+    });
+    
+    // انیمیشن ورود کارت‌ها
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    cards.forEach(card => {
+      card.style.opacity = 0;
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(card);
     });
   </script>
 </body>
