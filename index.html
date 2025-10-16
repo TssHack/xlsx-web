@@ -69,6 +69,8 @@
       --card-radius:16px;
       --max-width:1200px;
       --transition-speed:0.3s;
+      --header-height: auto;
+      --spacing-unit: 8px;
     }
     
     html,body{height:100%}
@@ -81,8 +83,9 @@
       -moz-osx-font-smoothing:grayscale;
       display:flex;
       justify-content:center;
-      padding:20px 16px;
+      padding:var(--spacing-unit);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     .container{
@@ -90,24 +93,33 @@
       max-width:var(--max-width);
       background: var(--md-sys-color-surface-container);
       border-radius:24px;
-      padding:24px;
+      padding:calc(var(--spacing-unit) * 3);
       box-shadow: 0 8px 32px rgba(2,6,23,0.7);
       border: 1px solid var(--md-sys-color-outline-variant);
       transition: all var(--transition-speed) ease;
+      overflow: hidden;
     }
 
     header{
       display:flex;
-      gap:20px;
-      align-items:center;
-      margin-bottom:24px;
-      flex-wrap:wrap;
-      padding-bottom:16px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap:calc(var(--spacing-unit) * 2);
+      margin-bottom:calc(var(--spacing-unit) * 3);
+      padding-bottom:calc(var(--spacing-unit) * 2);
       border-bottom:1px solid var(--md-sys-color-outline-variant);
     }
+    
+    .header-top {
+      display: flex;
+      align-items: center;
+      gap:calc(var(--spacing-unit) * 2);
+      width: 100%;
+    }
+    
     .logo{
-      width:72px;
-      height:72px;
+      width:64px;
+      height:64px;
       border-radius:16px;
       background:linear-gradient(135deg,var(--md-sys-color-primary), var(--md-sys-color-tertiary));
       display:grid;
@@ -117,39 +129,43 @@
       font-size:24px;
       box-shadow:0 8px 24px rgba(0,0,0,0.4);
       transition: transform var(--transition-speed) ease;
+      flex-shrink: 0;
     }
     .logo:hover {
       transform: scale(1.05);
     }
+    
+    .header-content {
+      flex: 1;
+    }
+    
     h1{
       margin:0;
-      font-size:28px;
+      font-size:24px;
       line-height:1.2;
       color:var(--md-sys-color-on-surface);
       font-weight:700;
     }
     p.lead{
-      margin:8px 0 0 0;
+      margin:calc(var(--spacing-unit)) 0 0 0;
       color:var(--md-sys-color-on-surface-variant);
-      font-size:15px;
+      font-size:14px;
       font-weight:400;
     }
 
     .controls{
-      margin-top:16px;
+      width: 100%;
       display:flex;
-      gap:14px;
-      align-items:center;
-      flex-wrap:wrap;
+      flex-direction: column;
+      gap:calc(var(--spacing-unit) * 1.5);
     }
 
     .search {
-      flex:1 1 320px;
       display:flex;
-      gap:10px;
+      gap:calc(var(--spacing-unit));
       align-items:center;
       background:var(--md-sys-color-surface-container-low);
-      padding:12px 16px;
+      padding:calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
       border-radius:28px;
       border:1px solid var(--md-sys-color-outline);
       transition: all var(--transition-speed) ease;
@@ -168,43 +184,57 @@
       font-size:15px;
       font-family: inherit;
     }
+    
+    .search-icon {
+      opacity:0.8;
+      font-size:18px;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    
+    .tags-container {
+      display: flex;
+      gap: calc(var(--spacing-unit));
+      flex-wrap: wrap;
+    }
+    
     .tag{
       background: var(--md-sys-color-primary-container);
-      padding:8px 14px;
+      padding:calc(var(--spacing-unit)) calc(var(--spacing-unit) * 1.75);
       border-radius:16px;
-      font-size:14px;
+      font-size:13px;
       color:var(--md-sys-color-on-primary-container);
       border:1px solid var(--md-sys-color-outline);
       font-weight:500;
     }
 
     main{
-      margin-top:24px;
+      margin-top:calc(var(--spacing-unit) * 3);
       display:grid;
-      grid-template-columns: 1fr 380px;
-      gap:24px;
+      grid-template-columns: 1fr;
+      gap:calc(var(--spacing-unit) * 3);
     }
 
     /* left: list */
     .list{
       background: var(--md-sys-color-surface-container-low);
-      padding:20px;
+      padding:calc(var(--spacing-unit) * 2.5);
       border-radius:20px;
       border:1px solid var(--md-sys-color-outline-variant);
       min-height:400px;
     }
 
     .group{
-      margin-bottom:24px;
-      padding-bottom:16px;
+      margin-bottom:calc(var(--spacing-unit) * 3);
+      padding-bottom:calc(var(--spacing-unit) * 2);
       border-bottom:1px solid var(--md-sys-color-outline-variant);
     }
     .group:last-child {
       border-bottom: none;
+      margin-bottom: 0;
     }
     .group h2{
-      margin:0 0 12px 0;
-      font-size:20px;
+      margin:0 0 calc(var(--spacing-unit) * 1.5) 0;
+      font-size:18px;
       color:var(--md-sys-color-primary);
       display:flex;
       justify-content:space-between;
@@ -212,27 +242,29 @@
       font-weight:600;
     }
     .group p{
-      margin:0 0 16px 0;
+      margin:0 0 calc(var(--spacing-unit) * 2) 0;
       color:var(--md-sys-color-on-surface-variant);
-      font-size:14px;
+      font-size:13px;
       font-weight:400;
     }
 
     .cards{
       display:grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap:14px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap:calc(var(--spacing-unit) * 1.75);
     }
 
     .card{
       background: var(--md-sys-color-surface-container);
-      padding:16px;
+      padding:calc(var(--spacing-unit) * 2);
       border-radius:16px;
       border:1px solid var(--md-sys-color-outline-variant);
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       transition: all var(--transition-speed) ease;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
     .card::before {
       content: '';
@@ -257,9 +289,9 @@
     .fn-title{
       display:flex;
       justify-content:space-between;
-      gap:8px;
+      gap:calc(var(--spacing-unit));
       align-items:center;
-      margin-bottom:10px;
+      margin-bottom:calc(var(--spacing-unit) * 1.25);
     }
     .fn-title b{ 
       font-size:16px; 
@@ -267,20 +299,24 @@
       font-weight:600;
     }
     .fn-title span {
-      font-size:13px;
+      font-size:12px;
       color:var(--md-sys-color-on-surface-variant);
       font-family: 'Courier New', monospace;
+      background: var(--md-sys-color-surface-container-lowest);
+      padding: 4px 8px;
+      border-radius: 6px;
     }
     .fn-desc{ 
       color:var(--md-sys-color-on-surface-variant); 
       font-size:14px; 
-      margin-bottom:12px; 
+      margin-bottom:calc(var(--spacing-unit) * 1.5); 
       min-height:40px;
       font-weight:400;
+      flex: 1;
     }
     .fn-ex{
       background:var(--md-sys-color-surface-container-lowest);
-      padding:12px;
+      padding:calc(var(--spacing-unit) * 1.5);
       border-radius:12px;
       font-family: "Courier New", monospace;
       font-size:13px;
@@ -289,32 +325,37 @@
       border:1px solid var(--md-sys-color-outline-variant);
       direction: ltr;
       text-align: left;
+      cursor: pointer;
+      transition: all var(--transition-speed) ease;
+    }
+    .fn-ex:hover {
+      background: var(--md-sys-color-surface-container);
     }
 
     /* right: cheat sheet */
     aside{
       background: var(--md-sys-color-surface-container-low);
-      padding:20px;
+      padding:calc(var(--spacing-unit) * 2.5);
       border-radius:20px;
       border:1px solid var(--md-sys-color-outline-variant);
       height:fit-content;
       position: sticky;
-      top:20px;
+      top:calc(var(--spacing-unit) * 2);
     }
     .aside-title{ 
       font-size:18px; 
-      margin:0 0 16px 0; 
+      margin:0 0 calc(var(--spacing-unit) * 2) 0; 
       color:var(--md-sys-color-primary);
       font-weight:600;
     }
     ul.tip{ 
-      padding-right:20px; 
+      padding-right:calc(var(--spacing-unit) * 2.5); 
       margin:0; 
       color:var(--md-sys-color-on-surface-variant); 
       font-size:14px;
     }
     ul.tip li{ 
-      margin-bottom:12px; 
+      margin-bottom:calc(var(--spacing-unit) * 1.5); 
       line-height:1.5;
       position: relative;
     }
@@ -327,11 +368,11 @@
     }
 
     footer{
-      margin-top:24px;
+      margin-top:calc(var(--spacing-unit) * 3);
       text-align:center;
       color:var(--md-sys-color-on-surface-variant);
       font-size:14px;
-      padding-top:16px;
+      padding-top:calc(var(--spacing-unit) * 2);
       border-top:1px solid var(--md-sys-color-outline-variant);
     }
     footer a {
@@ -344,36 +385,34 @@
       opacity: 0.8;
     }
 
-    /* responsive */
-    @media (max-width:968px){
-      main{ grid-template-columns: 1fr; }
-      aside{ order:2; }
+    /* فیلترها */
+    .filter-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: calc(var(--spacing-unit));
+      margin-top:calc(var(--spacing-unit) * 2);
     }
     
-    @media (max-width:600px){
-      .cards {
-        grid-template-columns: 1fr;
-      }
-      h1 {
-        font-size: 24px;
-      }
-      .controls {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .search {
-        width: 100%;
-      }
+    .filter-btn {
+      background: var(--md-sys-color-surface-container-low);
+      color: var(--md-sys-color-on-surface-variant);
+      border: 1px solid var(--md-sys-color-outline);
+      padding: calc(var(--spacing-unit)) calc(var(--spacing-unit) * 1.75);
+      border-radius: 20px;
+      font-size:13px;
+      cursor: pointer;
+      transition: all var(--transition-speed) ease;
+      white-space: nowrap;
     }
     
-    /* انیمیشن‌ها */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .filter-btn:hover {
+      border-color: var(--md-sys-color-primary);
     }
     
-    .card {
-      animation: fadeIn 0.5s ease forwards;
+    .filter-btn.active {
+      background: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      border-color: var(--md-sys-color-primary);
     }
     
     /* اسنک‌بار برای کپی */
@@ -399,8 +438,9 @@
       opacity: 1;
     }
     
-    /* دکمه‌ها */
-    .btn {
+    /* دکمه موبایل برای فیلترها */
+    .mobile-filter-toggle {
+      display: none;
       background: var(--md-sys-color-primary);
       color: var(--md-sys-color-on-primary);
       border: none;
@@ -410,66 +450,201 @@
       font-weight: 500;
       cursor: pointer;
       transition: all var(--transition-speed) ease;
-      display: inline-flex;
+      margin-bottom: calc(var(--spacing-unit) * 1.5);
+      width: 100%;
+      justify-content: center;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
     
-    .btn:hover {
+    .mobile-filter-toggle:hover {
       background: var(--md-sys-color-primary-container);
       color: var(--md-sys-color-on-primary-container);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     
-    /* فیلترها */
-    .filter-container {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
+    /* ریسپانسیو */
+    @media (min-width: 769px) {
+      main {
+        grid-template-columns: 1fr 380px;
+      }
+      
+      .header-top {
+        flex-direction: row;
+      }
+      
+      .controls {
+        flex-direction: row;
+        align-items: center;
+      }
+      
+      .search {
+        flex: 1;
+      }
     }
     
-    .filter-btn {
+    @media (max-width: 768px) {
+      .container {
+        padding: calc(var(--spacing-unit) * 2);
+        border-radius: 16px;
+      }
+      
+      h1 {
+        font-size: 20px;
+      }
+      
+      .cards {
+        grid-template-columns: 1fr;
+      }
+      
+      .mobile-filter-toggle {
+        display: flex;
+      }
+      
+      .filter-container {
+        display: none;
+        margin-top: 0;
+        margin-bottom: calc(var(--spacing-unit) * 1.5);
+      }
+      
+      .filter-container.active {
+        display: flex;
+      }
+      
+      aside {
+        position: static;
+        margin-top: calc(var(--spacing-unit) * 2);
+      }
+      
+      .fn-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: calc(var(--spacing-unit));
+      }
+      
+      .fn-title span {
+        align-self: flex-end;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .header-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      
+      .header-content {
+        width: 100%;
+      }
+      
+      .logo {
+        width: 56px;
+        height: 56px;
+        font-size: 20px;
+      }
+      
+      .controls {
+        width: 100%;
+      }
+      
+      .tags-container {
+        justify-content: center;
+      }
+    }
+    
+    /* انیمیشن‌ها */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .card {
+      animation: fadeIn 0.5s ease forwards;
+    }
+    
+    /* بهبود اسکرول */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
       background: var(--md-sys-color-surface-container-low);
-      color: var(--md-sys-color-on-surface-variant);
-      border: 1px solid var(--md-sys-color-outline);
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all var(--transition-speed) ease;
+      border-radius: 4px;
     }
     
-    .filter-btn:hover {
-      border-color: var(--md-sys-color-primary);
+    ::-webkit-scrollbar-thumb {
+      background: var(--md-sys-color-outline-variant);
+      border-radius: 4px;
     }
     
-    .filter-btn.active {
-      background: var(--md-sys-color-primary-container);
-      color: var(--md-sys-color-on-primary-container);
-      border-color: var(--md-sys-color-primary);
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--md-sys-color-outline);
+    }
+    
+    /* بهبود تمرکز */
+    *:focus {
+      outline: 2px solid var(--md-sys-color-primary);
+      outline-offset: 2px;
+    }
+    
+    /* بهبود دسترسی */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
     }
   </style>
 </head>
 <body>
   <div class="container" role="main" aria-label="توابع اکسل پرکاربرد در حسابداری">
     <header>
-      <div class="logo">EX</div>
-      <div>
-        <h1>توابع اکسل ویژه حسابداری — مرجع جامع</h1>
-        <p class="lead">مهم‌ترین فرمول‌ها و کاربرد آن‌ها در حسابداری، انبار، گزارش‌گیری مالی و کنترل هزینه</p>
-        <div class="controls" style="margin-top:12px">
-          <div class="search" aria-hidden="false">
-            <i class="ri-search-line" style="opacity:0.8; font-size:18px;"></i>
-            <input id="search" placeholder="جستجو (نام تابع / کاربرد / مثال) ..." />
-          </div>
-          <div class="tag">حسابداری · مالی · گزارش</div>
+      <div class="header-top">
+        <div class="logo">EX</div>
+        <div class="header-content">
+          <h1>توابع اکسل ویژه حسابداری — مرجع جامع</h1>
+          <p class="lead">مهم‌ترین فرمول‌ها و کاربرد آن‌ها در حسابداری، انبار، گزارش‌گیری مالی و کنترل هزینه</p>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="search" aria-hidden="false">
+          <i class="ri-search-line search-icon"></i>
+          <input id="search" placeholder="جستجو (نام تابع / کاربرد / مثال) ..." aria-label="جستجوی توابع" />
+        </div>
+        <div class="tags-container">
+          <div class="tag">حسابداری</div>
+          <div class="tag">مالی</div>
+          <div class="tag">گزارش</div>
         </div>
       </div>
     </header>
 
     <main>
       <section class="list" id="functions-list">
+        <button class="mobile-filter-toggle" id="mobile-filter-toggle">
+          <i class="ri-filter-3-line"></i>
+          فیلتر توابع
+        </button>
+        
+        <div class="filter-container" id="filter-container">
+          <button class="filter-btn active" data-filter="all">همه</button>
+          <button class="filter-btn" data-filter="aggregation">جمع و خلاصه‌سازی</button>
+          <button class="filter-btn" data-filter="lookup">جست‌وجو و مرجع</button>
+          <button class="filter-btn" data-filter="financial">مالی</button>
+          <button class="filter-btn" data-filter="date">تاریخ و زمان</button>
+          <button class="filter-btn" data-filter="conditional">شرطی و منطقی</button>
+          <button class="filter-btn" data-filter="text">متنی</button>
+          <button class="filter-btn" data-filter="rounding">گردکردن</button>
+          <button class="filter-btn" data-filter="analysis">تحلیل داده</button>
+          <button class="filter-btn" data-filter="information">اطلاعاتی</button>
+        </div>
+        
         <!-- Group: جمع و خلاصه سازی -->
         <div class="group" data-group="aggregation">
           <h2>جمع و خلاصه‌سازی</h2>
@@ -901,27 +1076,6 @@
           <li>برای جلوگیری از خطا در محاسبات، از <code>IFERROR</code> و توابع <code>IS</code> مانند <code>ISNUMBER</code> استفاده کن</li>
           <li>برای گرد کردن مقادیر مالی، از <code>ROUND</code> به جای قالب‌بندی سلول استفاده کن تا در محاسبات بعدی دقت حفظ شود</li>
         </ul>
-
-        <hr style="border-color:var(--md-sys-color-outline-variant); margin:16px 0;" />
-
-        <div style="font-size:14px;color:var(--md-sys-color-on-surface-variant)">
-          برای استفاده سریع: <br/>
-          - تایپ بخشی از نام تابع در کادر بالا برای فیلتر لیست <br/>
-          - روی هر مثال کلیک کن تا کپی شود
-        </div>
-        
-        <div class="filter-container" style="margin-top:16px">
-          <button class="filter-btn active" data-filter="all">همه</button>
-          <button class="filter-btn" data-filter="aggregation">جمع و خلاصه‌سازی</button>
-          <button class="filter-btn" data-filter="lookup">جست‌وجو و مرجع</button>
-          <button class="filter-btn" data-filter="financial">مالی</button>
-          <button class="filter-btn" data-filter="date">تاریخ و زمان</button>
-          <button class="filter-btn" data-filter="conditional">شرطی و منطقی</button>
-          <button class="filter-btn" data-filter="text">متنی</button>
-          <button class="filter-btn" data-filter="rounding">گردکردن</button>
-          <button class="filter-btn" data-filter="analysis">تحلیل داده</button>
-          <button class="filter-btn" data-filter="information">اطلاعاتی</button>
-        </div>
       </aside>
     </main>
 
@@ -931,7 +1085,7 @@
   </div>
 
   <!-- اسنک‌بار برای نمایش پیام‌ها -->
-  <div class="snackbar" id="snackbar">کپی شد!</div>
+  <div class="snackbar" id="snackbar" role="alert" aria-live="polite">کپی شد!</div>
 
   <script>
     // جستجو و فیلتر زنده
@@ -1020,6 +1174,18 @@
       });
     });
     
+    // دکمه فیلتر موبایل
+    const mobileFilterToggle = document.getElementById('mobile-filter-toggle');
+    const filterContainer = document.getElementById('filter-container');
+    
+    mobileFilterToggle.addEventListener('click', () => {
+      filterContainer.classList.toggle('active');
+      const isActive = filterContainer.classList.contains('active');
+      mobileFilterToggle.innerHTML = isActive ? 
+        '<i class="ri-close-line"></i> بستن فیلترها' : 
+        '<i class="ri-filter-3-line"></i> فیلتر توابع';
+    });
+    
     // انیمیشن ورود کارت‌ها
     const observerOptions = {
       root: null,
@@ -1041,6 +1207,14 @@
       card.style.transform = 'translateY(20px)';
       card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
       observer.observe(card);
+    });
+    
+    // بهبود دسترسی برای صفحه کلید
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && filterContainer.classList.contains('active')) {
+        filterContainer.classList.remove('active');
+        mobileFilterToggle.innerHTML = '<i class="ri-filter-3-line"></i> فیلتر توابع';
+      }
     });
   </script>
 </body>
