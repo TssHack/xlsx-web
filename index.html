@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>توابع اکسل پرکاربرد در حسابداری — مرجع سریع</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#00c2a8;
+      --muted:#9aa7b2;
+      --glass:rgba(255,255,255,0.03);
+      --card-radius:14px;
+      --max-width:1100px;
+    }
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Vazirmatn", "Tahoma", Arial, sans-serif;
+      background: linear-gradient(180deg,#071028 0%, #071a2a 50%, #0d2935 100%);
+      color:#e6f0f2;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      justify-content:center;
+      padding:28px 16px;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:18px;
+      padding:22px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:18px;
+      flex-wrap:wrap;
+    }
+    .logo{
+      width:64px;
+      height:64px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),#3bd7cf);
+      display:grid;
+      place-items:center;
+      color:#042028;
+      font-weight:800;
+      font-size:20px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.5);
+    }
+    h1{
+      margin:0;
+      font-size:20px;
+      line-height:1.05;
+      color:#dffbf2;
+    }
+    p.lead{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .controls{
+      margin-top:12px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .search {
+      flex:1 1 320px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      background:var(--glass);
+      padding:8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .search input{
+      background:transparent;
+      border:0;
+      outline:none;
+      color:inherit;
+      padding:8px;
+      width:100%;
+      font-size:14px;
+    }
+    .tag{
+      background: rgba(255,255,255,0.02);
+      padding:6px 10px;
+      border-radius:10px;
+      font-size:13px;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    main{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:18px;
+    }
+
+    /* left: list */
+    .list{
+      background: rgba(255,255,255,0.01);
+      padding:14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.02);
+      min-height:320px;
+    }
+
+    .group{
+      margin-bottom:14px;
+    }
+    .group h2{
+      margin:0 0 8px 0;
+      font-size:15px;
+      color:#c7fff6;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .group p{
+      margin:0 0 8px 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap:10px;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.008));
+      padding:12px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.02);
+      box-shadow: 0 6px 14px rgba(2,6,23,0.6);
+      transition: transform .14s ease, box-shadow .14s;
+    }
+    .card:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,0.6); }
+
+    .fn-title{
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      align-items:center;
+      margin-bottom:8px;
+    }
+    .fn-title b{ font-size:14px; color:#eafff7; }
+    .fn-desc{ color:var(--muted); font-size:13px; margin-bottom:8px; min-height:34px; }
+    .fn-ex{
+      background:rgba(0,0,0,0.25);
+      padding:8px;
+      border-radius:8px;
+      font-family: "Courier New", monospace;
+      font-size:13px;
+      color:#dffbf2;
+      overflow:auto;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    /* right: cheat sheet */
+    aside{
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
+      padding:14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.02);
+      height:fit-content;
+    }
+    .aside-title{ font-size:14px; margin:0 0 10px 0; color:#dffbf2; }
+    ul.tip{ padding-left:18px; margin:0; color:var(--muted); font-size:13px; }
+    ul.tip li{ margin-bottom:8px; line-height:1.45; }
+
+    footer{
+      margin-top:16px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* responsive */
+    @media (max-width:900px){
+      main{ grid-template-columns: 1fr; }
+      aside{ order:2; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="توابع اکسل پرکاربرد در حسابداری">
+    <header>
+      <div class="logo">EX</div>
+      <div>
+        <h1>توابع اکسل ویژه حسابداری — مرجع سریع</h1>
+        <p class="lead">مهم‌ترین فرمول‌ها و کاربرد آن‌ها در حسابداری، انبار، گزارش‌گیری مالی و کنترل هزینه.</p>
+        <div class="controls" style="margin-top:8px">
+          <div class="search" aria-hidden="false">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:0.8">
+              <path d="M21 21l-4.35-4.35" stroke="white" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="11" cy="11" r="6" stroke="white" stroke-opacity="0.7" stroke-width="1.5"/>
+            </svg>
+            <input id="search" placeholder="جستجو (نام تابع / کاربرد / مثال) ..." />
+          </div>
+          <div class="tag">حسابداری · مالی · گزارش</div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="list" id="functions-list">
+        <!-- Group: جمع و خلاصه سازی -->
+        <div class="group" data-group="aggregation">
+          <h2>جمع و خلاصه‌سازی</h2>
+          <p>محاسبات تراز، جمع هزینه‌ها و خلاصه‌سازی اعداد</p>
+          <div class="cards">
+            <div class="card" data-keywords="sum جمع مجموع هزینه فروش">
+              <div class="fn-title"><b>SUM</b><span>SUM(range)</span></div>
+              <div class="fn-desc">جمع ساده یک بازه — پایه‌ی اکثر گزارش‌های مالی.</div>
+              <div class="fn-ex">مثال: <code>=SUM(B2:B120)</code></div>
+            </div>
+
+            <div class="card" data-keywords="subtotal جمع جزئی فیلتر شده SUBTOTAL">
+              <div class="fn-title"><b>SUBTOTAL</b><span>SUBTOTAL(func_code, range)</span></div>
+              <div class="fn-desc">محاسبهٔ جمع/میانگین/... که ردیف‌های فیلتر شده را نادیده می‌گیرد — مناسب برای لیست‌های پویا.</div>
+              <div class="fn-ex">مثال: <code>=SUBTOTAL(9, C2:C500)  /* 9 = SUM */</code></div>
+            </div>
+
+            <div class="card" data-keywords="sumif شرطی SUMIF SUMIFS">
+              <div class="fn-title"><b>SUMIF / SUMIFS</b><span>SUMIF(range, criteria, [sum_range])</span></div>
+              <div class="fn-desc">جمع شرطی — SUMIF برای یک شرط، SUMIFS برای چند شرط (مثلاً جمع فروش یک مشتری یا برای یک تاریخ خاص).</div>
+              <div class="fn-ex">مثال: <code>=SUMIFS(D:D, A:A,"فروش", B:B,">=2025-01-01")</code></div>
+            </div>
+
+            <div class="card" data-keywords="count شمارش COUNT COUNTA COUNTIF">
+              <div class="fn-title"><b>COUNT / COUNTA / COUNTIF</b><span>COUNT(range)</span></div>
+              <div class="fn-desc">شمارش سطرها: COUNT برای اعداد، COUNTA برای هر نوع داده، COUNTIF برای شرط.</div>
+              <div class="fn-ex">مثال: <code>=COUNTIF(E:E, "پرداخت‌شده")</code></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group: جستجو و مرجع -->
+        <div class="group" data-group="lookup">
+          <h2>جست‌وجو و مرجع</h2>
+          <p>برای وصل کردن جداول، ماتریس‌ها و ساخت گزارش‌های تلفیقی</p>
+          <div class="cards">
+            <div class="card" data-keywords="vlookup جستجوی عمودی VLOOKUP">
+              <div class="fn-title"><b>VLOOKUP</b><span>VLOOKUP(value, table, col_index, [range_lookup])</span></div>
+              <div class="fn-desc">جستجوی عمودی؛ برای پیدا کردن اطلاعات مشتری، نام کالا و... (ترجیحاً از XLOOKUP استفاده کن).</div>
+              <div class="fn-ex">مثال: <code>=VLOOKUP(G2, Products!A:C, 3, FALSE)</code></div>
+            </div>
+
+            <div class="card" data-keywords="xlookup xlookup جایگزین vlookup">
+              <div class="fn-title"><b>XLOOKUP</b><span>XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode])</span></div>
+              <div class="fn-desc">نسخهٔ مدرن‌تر و انعطاف‌پذیرتر از VLOOKUP/HLOOKUP (جستجوی به سمت چپ، مقدار پیش‌فرض و ...).</div>
+              <div class="fn-ex">مثال: <code>=XLOOKUP(F2, Customers!A:A, Customers!B:B, "یافت نشد")</code></div>
+            </div>
+
+            <div class="card" data-keywords="index match index match ترکیب">
+              <div class="fn-title"><b>INDEX + MATCH</b><span>INDEX(range, MATCH(...))</span></div>
+              <div class="fn-desc">ترکیب قدرتمند برای جستجوی قابل‌اطمینان و انعطاف‌پذیر (به‌جای VLOOKUP در جداول بزرگ).</div>
+              <div class="fn-ex">مثال: <code>=INDEX(Products!C:C, MATCH(H2, Products!A:A, 0))</code></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group: مالی -->
+        <div class="group" data-group="financial">
+          <h2>توابع مالی</h2>
+          <p>محاسبه نرخ، اقساط، ارزش فعلی و جریان‌های نقدی</p>
+          <div class="cards">
+            <div class="card" data-keywords="npv ارزش فعلی خالص NPV">
+              <div class="fn-title"><b>NPV</b><span>NPV(rate, value1, [value2], ...)</span></div>
+              <div class="fn-desc">محاسبه ارزش فعلی خالص جریانات نقدی — کاربرد در تحلیل سرمایه‌گذاری‌ها.</div>
+              <div class="fn-ex">مثال: <code>=NPV(0.12, C2:C6) + C1  /* C1 = جریان اولیه */</code></div>
+            </div>
+
+            <div class="card" data-keywords="irr نرخ بازده داخلی IRR">
+              <div class="fn-title"><b>IRR</b><span>IRR(values, [guess])</span></div>
+              <div class="fn-desc">محاسبه نرخ بازده داخلی از یک سری جریان نقدی.</div>
+              <div class="fn-ex">مثال: <code>=IRR(C1:C6)</code></div>
+            </div>
+
+            <div class="card" data-keywords="pmnt پرداخت قسط PMT">
+              <div class="fn-title"><b>PMT</b><span>PMT(rate, nper, pv, [fv], [type])</span></div>
+              <div class="fn-desc">محاسبه مبلغ قسط برای وام یا تسهیلات.</div>
+              <div class="fn-ex">مثال: <code>=PMT(0.08/12, 60, -1000000)</code></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group: تاریخ و زمان -->
+        <div class="group" data-group="date">
+          <h2>توابع تاریخ و زمان</h2>
+          <p>مهم برای محاسبه سررسیدها، سن حساب‌ها و دوره‌ها</p>
+          <div class="cards">
+            <div class="card" data-keywords="datedif اختلاف تاریخ DATEDIF">
+              <div class="fn-title"><b>DATEDIF</b><span>DATEDIF(start_date,end_date, "unit")</span></div>
+              <div class="fn-desc">محاسبه اختلاف تاریخ بر حسب روز/ماه/سال — مفید برای حسابرسی دوره‌ها.</div>
+              <div class="fn-ex">مثال: <code>=DATEDIF(A2, B2, "m") /* اختلاف به ماه */</code></div>
+            </div>
+
+            <div class="card" data-keywords="edate افزودن ماه EDATE">
+              <div class="fn-title"><b>EDATE</b><span>EDATE(start_date, months)</span></div>
+              <div class="fn-desc">افزودن یا کم کردن ماه — محاسبه سررسید اقساط یا قراردادها.</div>
+              <div class="fn-ex">مثال: <code>=EDATE(A2, 3) /* 3 ماه بعد */</code></div>
+            </div>
+
+            <div class="card" data-keywords="today now تاریخ امروز NOW TODAY">
+              <div class="fn-title"><b>TODAY / NOW</b><span>TODAY() / NOW()</span></div>
+              <div class="fn-desc">TODAY تاریخ امروز؛ NOW تاریخ و زمان کنونی — برای گزارش‌های روزانه و لاگ‌ها.</div>
+              <div class="fn-ex">مثال: <code>=IF(D2 <= TODAY(),"سررسید","فعال")</code></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group: شرایطی و منطقی -->
+        <div class="group" data-group="conditional">
+          <h2>توابع شرطی و منطقی</h2>
+          <p>برای تحلیل شرطی، تخصیص حساب و اعتبارسنجی داده‌ها</p>
+          <div class="cards">
+            <div class="card" data-keywords="if شرط IF">
+              <div class="fn-title"><b>IF</b><span>IF(condition, value_if_true, value_if_false)</span></div>
+              <div class="fn-desc">اساس چک‌های منطقی و تصمیم‌گیری در سلول‌ها.</div>
+              <div class="fn-ex">مثال: <code>=IF(E2>0, "بدهکار", "بستانکار")</code></div>
+            </div>
+
+            <div class="card" data-keywords="ifs چند شرط IFS">
+              <div class="fn-title"><b>IFS</b><span>IFS(cond1, val1, cond2, val2, ...)</span></div>
+              <div class="fn-desc">جایگزین سلسله‌ای برای تو در توهای IF؛ خواناتر برای چند شرط.</div>
+              <div class="fn-ex">مثال: <code>=IFS(B2>=90,"عالی", B2>=75,"خوب", TRUE,"نیاز به بررسی")</code></div>
+            </div>
+
+            <div class="card" data-keywords="iferror خطا IFERROR">
+              <div class="fn-title"><b>IFERROR</b><span>IFERROR(value, value_if_error)</span></div>
+              <div class="fn-desc">نمایش مقدار جایگزین به‌جای خطا (مثلاً تقسیم بر صفر یا جستجوی ناموفق).</div>
+              <div class="fn-ex">مثال: <code>=IFERROR(A2/B2, 0)</code></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group: متنی و پاکسازی -->
+        <div class="group" data-group="text">
+          <h2>توابع متنی و قالب‌بندی</h2>
+          <p>پاکسازی نام مشتری، جدا کردن کدها و آماده‌سازی گزارش</p>
+          <div class="cards">
+            <div class="card" data-keywords="text قالب بندی TEXT">
+              <div class="fn-title"><b>TEXT</b><span>TEXT(value, format_text)</span></div>
+              <div class="fn-desc">قالب‌دهی عدد به متن (مناسب برای گزارش‌ها و چاپ فاکتور).</div>
+              <div class="fn-ex">مثال: <code>=TEXT(A2,"#,##0.00")</code></div>
+            </div>
+
+            <div class="card" data-keywords="concat ترکیب متن CONCAT &">
+              <div class="fn-title"><b>CONCAT / &amp;</b><span>=A2 & " - " & B2</span></div>
+              <div class="fn-desc">ترکیب فیلدها برای ساخت شناسه، توضیحات فاکتور و ...</div>
+              <div class="fn-ex">مثال: <code>=A2 & " | " & TEXT(B2,"yyyy-mm-dd")</code></div>
+            </div>
+
+            <div class="card" data-keywords="trim پاکسازی TRIM">
+              <div class="fn-title"><b>TRIM</b><span>TRIM(text)</span></div>
+              <div class="fn-desc">حذف فاصله‌های اضافی — مهم قبل از جستجو/مچ‌کردن نام‌ها.</div>
+              <div class="fn-ex">مثال: <code>=TRIM(C2)</code></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group: گردکردن و مالیاتی -->
+        <div class="group" data-group="rounding">
+          <h2>گردکردن و محاسبات دقیق</h2>
+          <p>مهم برای محاسبه مالیات، گزارش نهایی و تسویه‌ها</p>
+          <div class="cards">
+            <div class="card" data-keywords="round گرد کردن ROUND">
+              <div class="fn-title"><b>ROUND</b><span>ROUND(number, num_digits)</span></div>
+              <div class="fn-desc">گرد کردن عدد به تعداد اعشار مشخص — استفاده در مالیات و مبلغ نهایی.</div>
+              <div class="fn-ex">مثال: <code>=ROUND(E2, 0) /* گرد به تومان */</code></div>
+            </div>
+
+            <div class="card" data-keywords="roundup rounddown">
+              <div class="fn-title"><b>ROUNDUP / ROUNDDOWN</b><span>ROUNDUP(number, num_digits)</span></div>
+              <div class="fn-desc">گرد به بالا یا پایین — مثلاً در محاسبه سررسید یا تخمین‌های عملیاتی.</div>
+              <div class="fn-ex">مثال: <code>=ROUNDUP(F2, 0)</code></div>
+            </div>
+
+            <div class="card" data-keywords="mround چندگان MROUND">
+              <div class="fn-title"><b>MROUND</b><span>MROUND(number, multiple)</span></div>
+              <div class="fn-desc">گرد کردن به نزدیکترین چندگان (مثلاً واحد پول یا بسته‌بندی).</div>
+              <div class="fn-ex">مثال: <code>=MROUND(G2, 1000)</code></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group: تحلیل داده -->
+        <div class="group" data-group="analysis">
+          <h2>تحلیل داده و گزارش‌گیری</h2>
+          <p>توابع مفید برای تهیه داشبورد، جدول محوری (Pivot) و تحلیل هزینه</p>
+          <div class="cards">
+            <div class="card" data-keywords="pivot table pivot جدول محوری">
+              <div class="fn-title"><b>Pivot Table</b><span>—</span></div>
+              <div class="fn-desc">ابزار قدرتمند جمع‌بندی، گروه‌بندی و تهیه گزارش‌های ترکیبی (از منوی Insert).</div>
+              <div class="fn-ex">نکته: از Pivot به‌علاوه توابع GETPIVOTDATA برای استخراج مقادیر استفاده کن.</div>
+            </div>
+
+            <div class="card" data-keywords="sumproduct ضرب مجموع SUMPRODUCT">
+              <div class="fn-title"><b>SUMPRODUCT</b><span>SUMPRODUCT(array1, [array2], ...)</span></div>
+              <div class="fn-desc">مجموع حاصل‌ضرب آرایه‌ها — مناسب محاسبه هزینه کل از مقدار × قیمت با شرط.</div>
+              <div class="fn-ex">مثال: <code>=SUMPRODUCT((A2:A100="مواد")*(C2:C100)*(D2:D100))</code></div>
+            </div>
+
+            <div class="card" data-keywords="filter فیلتر dynamic FILTER">
+              <div class="fn-title"><b>FILTER (نسخۀ جدید)</b><span>FILTER(array, include, [if_empty])</span></div>
+              <div class="fn-desc">فیلتر دینامیک داده‌ها بدون نیاز به جدول محوری — در نسخه‌های جدید Excel.</div>
+              <div class="fn-ex">مثال: <code>=FILTER(Table1, Table1[وضعیت]="باز")</code></div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <aside>
+        <div class="aside-title">نکات کلیدی برای حسابداران</div>
+        <ul class="tip">
+          <li><strong>همیشه</strong> داده‌ها را با <code>TRIM</code> و فرمت صحیح تاریخ پاکسازی کن تا جستجوها دقیق باشند.</li>
+          <li>برای جستجوهای پیچیده از <code>XLOOKUP</code> یا ترکیب <code>INDEX+MATCH</code> استفاده کن؛ <code>VLOOKUP</code> محدودیت به ستون سمت چپ دارد.</li>
+          <li>در گزارش‌های مالی از <code>SUBTOTAL</code> و <code>Pivot Table</code> برای نتایج قابل‌اعتماد در حالت فیلتر استفاده کن.</li>
+          <li>استفاده از قالب‌های عددی با <code>TEXT</code> یا Format Cells برای چاپ فاکتور و خروجی گزارش مهم است.</li>
+          <li>برای محاسبه مالیات و محاسبات ماهانه، از توابع تاریخ (<code>EDATE</code>, <code>DATEDIF</code>) به‌دقت استفاده کن.</li>
+        </ul>
+
+        <hr style="border-color:rgba(255,255,255,0.03); margin:12px 0;" />
+
+        <div style="font-size:13px;color:var(--muted)">
+          برای استفاده سریع: <br/>
+          - تایپ بخشی از نام تابع در کادر بالا برای فیلتر لیست. <br/>
+          - روی هر مثال کلیک کن تا کپی شود.
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      اگر می‌خواهی این صفحه را با توابع خاص شرکتت سفارشی کنم یا فایل PDF خلاصه بسازم، بگو تا انجام دهم ✅
+    </footer>
+  </div>
+
+  <script>
+    // جستجو و فیلتر زنده
+    const search = document.getElementById('search');
+    const cards = Array.from(document.querySelectorAll('.card'));
+    search.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      cards.forEach(card => {
+        const title = card.querySelector('.fn-title b').textContent.toLowerCase();
+        const desc = card.querySelector('.fn-desc').textContent.toLowerCase();
+        const ex = card.querySelector('.fn-ex').textContent.toLowerCase();
+        const keywords = (card.getAttribute('data-keywords')||'').toLowerCase();
+        const found = [title,desc,ex,keywords].some(s => s.includes(q));
+        card.style.display = q === '' || found ? '' : 'none';
+      });
+    });
+
+    // کپی ساده هنگام کلیک روی مثال
+    document.querySelectorAll('.fn-ex').forEach(el => {
+      el.style.cursor = 'pointer';
+      el.title = 'کلیک برای کپی';
+      el.addEventListener('click', () => {
+        const txt = el.innerText.replace('مثال:','').trim();
+        navigator.clipboard?.writeText(txt).then(() => {
+          el.style.outline = '2px solid rgba(0,194,168,0.18)';
+          setTimeout(()=> el.style.outline = 'none', 800);
+        }).catch(()=> {
+          // fallback
+          alert('لطفاً متن را دستی کپی کنید:\n' + txt);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
