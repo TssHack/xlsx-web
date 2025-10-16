@@ -15,8 +15,8 @@
   
   <style>
     :root{
-      /* رنگ‌های Material Design 3 */
-      --md-sys-color-primary: #00c2a8;
+      /* رنگ‌های Material Design 3 - تم تیره */
+      --md-sys-color-primary: #4dd8c0;
       --md-sys-color-on-primary: #003730;
       --md-sys-color-primary-container: #005047;
       --md-sys-color-on-primary-container: #6fffe6;
@@ -66,71 +66,85 @@
       --md-sys-color-surface-container-highest: #252f3b;
       
       /* سایر متغیرها */
-      --card-radius:16px;
-      --max-width:1200px;
-      --transition-speed:0.3s;
-      --header-height: auto;
-      --spacing-unit: 8px;
+      --card-radius: 16px;
+      --max-width: 1200px;
+      --transition-speed: 0.3s;
+      --elevation-1: 0 2px 4px rgba(0,0,0,0.2);
+      --elevation-2: 0 4px 8px rgba(0,0,0,0.3);
+      --elevation-3: 0 8px 16px rgba(0,0,0,0.4);
+      --elevation-4: 0 16px 32px rgba(0,0,0,0.5);
+      --elevation-5: 0 24px 48px rgba(0,0,0,0.6);
     }
     
-    html,body{height:100%}
-    body{
-      margin:0;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html, body {
+      height: 100%;
       font-family: "Vazirmatn", sans-serif;
       background: linear-gradient(135deg, var(--md-sys-color-background) 0%, var(--md-sys-color-surface-container-low) 100%);
-      color:var(--md-sys-color-on-background);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      display:flex;
-      justify-content:center;
-      padding:var(--spacing-unit);
+      color: var(--md-sys-color-on-background);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       line-height: 1.6;
       overflow-x: hidden;
     }
-
-    .container{
-      width:100%;
-      max-width:var(--max-width);
+    
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 16px;
+      min-height: 100vh;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
       background: var(--md-sys-color-surface-container);
-      border-radius:24px;
-      padding:calc(var(--spacing-unit) * 3);
-      box-shadow: 0 8px 32px rgba(2,6,23,0.7);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--elevation-4);
       border: 1px solid var(--md-sys-color-outline-variant);
       transition: all var(--transition-speed) ease;
       overflow: hidden;
+      position: relative;
     }
-
-    header{
-      display:flex;
+    
+    /* هدر */
+    header {
+      display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap:calc(var(--spacing-unit) * 2);
-      margin-bottom:calc(var(--spacing-unit) * 3);
-      padding-bottom:calc(var(--spacing-unit) * 2);
-      border-bottom:1px solid var(--md-sys-color-outline-variant);
+      gap: 20px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
     }
     
     .header-top {
       display: flex;
       align-items: center;
-      gap:calc(var(--spacing-unit) * 2);
-      width: 100%;
+      gap: 20px;
     }
     
-    .logo{
-      width:64px;
-      height:64px;
-      border-radius:16px;
-      background:linear-gradient(135deg,var(--md-sys-color-primary), var(--md-sys-color-tertiary));
-      display:grid;
-      place-items:center;
-      color:var(--md-sys-color-on-primary);
-      font-weight:800;
-      font-size:24px;
-      box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    .logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--md-sys-color-primary), var(--md-sys-color-tertiary));
+      display: grid;
+      place-items: center;
+      color: var(--md-sys-color-on-primary);
+      font-weight: 800;
+      font-size: 24px;
+      box-shadow: var(--elevation-2);
       transition: transform var(--transition-speed) ease;
       flex-shrink: 0;
     }
+    
     .logo:hover {
       transform: scale(1.05);
     }
@@ -139,133 +153,240 @@
       flex: 1;
     }
     
-    h1{
-      margin:0;
-      font-size:24px;
-      line-height:1.2;
-      color:var(--md-sys-color-on-surface);
-      font-weight:700;
+    h1 {
+      font-size: 24px;
+      line-height: 1.2;
+      color: var(--md-sys-color-on-surface);
+      font-weight: 700;
+      margin: 0;
     }
-    p.lead{
-      margin:calc(var(--spacing-unit)) 0 0 0;
-      color:var(--md-sys-color-on-surface-variant);
-      font-size:14px;
-      font-weight:400;
+    
+    p.lead {
+      margin: 8px 0 0 0;
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 14px;
+      font-weight: 400;
     }
-
-    .controls{
-      width: 100%;
-      display:flex;
+    
+    /* جستجو و کنترل‌ها */
+    .controls {
+      display: flex;
       flex-direction: column;
-      gap:calc(var(--spacing-unit) * 1.5);
+      gap: 16px;
     }
-
+    
+    .search-container {
+      position: relative;
+      flex: 1;
+    }
+    
     .search {
-      display:flex;
-      gap:calc(var(--spacing-unit));
-      align-items:center;
-      background:var(--md-sys-color-surface-container-low);
-      padding:calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
-      border-radius:28px;
-      border:1px solid var(--md-sys-color-outline);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      background: var(--md-sys-color-surface-container-low);
+      border: 1px solid var(--md-sys-color-outline);
+      border-radius: 28px;
+      padding: 12px 20px;
       transition: all var(--transition-speed) ease;
+      box-shadow: var(--elevation-1);
     }
+    
     .search:focus-within {
       border-color: var(--md-sys-color-primary);
-      box-shadow: 0 0 0 3px rgba(0, 194, 168, 0.2);
+      box-shadow: 0 0 0 3px rgba(77, 216, 192, 0.2);
     }
-    .search input{
-      background:transparent;
-      border:0;
-      outline:none;
-      color:inherit;
-      padding:0;
-      width:100%;
-      font-size:15px;
+    
+    .search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--md-sys-color-on-surface);
+      padding: 0;
+      width: 100%;
+      font-size: 15px;
       font-family: inherit;
     }
     
     .search-icon {
-      opacity:0.8;
-      font-size:18px;
       color: var(--md-sys-color-on-surface-variant);
+      font-size: 20px;
+      margin-left: 12px;
     }
     
     .tags-container {
       display: flex;
-      gap: calc(var(--spacing-unit));
+      gap: 8px;
       flex-wrap: wrap;
     }
     
-    .tag{
+    .tag {
       background: var(--md-sys-color-primary-container);
-      padding:calc(var(--spacing-unit)) calc(var(--spacing-unit) * 1.75);
-      border-radius:16px;
-      font-size:13px;
-      color:var(--md-sys-color-on-primary-container);
-      border:1px solid var(--md-sys-color-outline);
-      font-weight:500;
+      color: var(--md-sys-color-on-primary-container);
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid var(--md-sys-color-outline);
+      transition: all var(--transition-speed) ease;
     }
-
-    main{
-      margin-top:calc(var(--spacing-unit) * 3);
-      display:grid;
+    
+    .tag:hover {
+      background: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+    }
+    
+    /* محتوای اصلی */
+    main {
+      display: grid;
       grid-template-columns: 1fr;
-      gap:calc(var(--spacing-unit) * 3);
+      gap: 24px;
     }
-
-    /* left: list */
-    .list{
+    
+    /* لیست توابع */
+    .list {
       background: var(--md-sys-color-surface-container-low);
-      padding:calc(var(--spacing-unit) * 2.5);
-      border-radius:20px;
-      border:1px solid var(--md-sys-color-outline-variant);
-      min-height:400px;
+      border-radius: 20px;
+      padding: 20px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      box-shadow: var(--elevation-1);
     }
-
-    .group{
-      margin-bottom:calc(var(--spacing-unit) * 3);
-      padding-bottom:calc(var(--spacing-unit) * 2);
-      border-bottom:1px solid var(--md-sys-color-outline-variant);
+    
+    /* دکمه فیلتر موبایل */
+    .mobile-filter-toggle {
+      display: none;
+      background: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      border: none;
+      padding: 12px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition-speed) ease;
+      margin-bottom: 16px;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--elevation-1);
     }
+    
+    .mobile-filter-toggle:hover {
+      background: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      box-shadow: var(--elevation-2);
+    }
+    
+    /* فیلترها */
+    .filter-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--md-sys-color-outline-variant) var(--md-sys-color-surface-container-low);
+    }
+    
+    .filter-container::-webkit-scrollbar {
+      height: 6px;
+    }
+    
+    .filter-container::-webkit-scrollbar-track {
+      background: var(--md-sys-color-surface-container-low);
+      border-radius: 3px;
+    }
+    
+    .filter-container::-webkit-scrollbar-thumb {
+      background: var(--md-sys-color-outline-variant);
+      border-radius: 3px;
+    }
+    
+    .filter-container::-webkit-scrollbar-thumb:hover {
+      background: var(--md-sys-color-outline);
+    }
+    
+    .filter-btn {
+      background: var(--md-sys-color-surface-container);
+      color: var(--md-sys-color-on-surface-variant);
+      border: 1px solid var(--md-sys-color-outline);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition-speed) ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    
+    .filter-btn:hover {
+      border-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-surface);
+    }
+    
+    .filter-btn.active {
+      background: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      border-color: var(--md-sys-color-primary);
+    }
+    
+    /* گروه‌ها */
+    .group {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+    
     .group:last-child {
       border-bottom: none;
       margin-bottom: 0;
     }
-    .group h2{
-      margin:0 0 calc(var(--spacing-unit) * 1.5) 0;
-      font-size:18px;
-      color:var(--md-sys-color-primary);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      font-weight:600;
+    
+    .group h2 {
+      font-size: 18px;
+      color: var(--md-sys-color-primary);
+      font-weight: 600;
+      margin: 0 0 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .group p{
-      margin:0 0 calc(var(--spacing-unit) * 2) 0;
-      color:var(--md-sys-color-on-surface-variant);
-      font-size:13px;
-      font-weight:400;
+    
+    .group h2 i {
+      font-size: 20px;
     }
-
-    .cards{
-      display:grid;
+    
+    .group p {
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 14px;
+      margin: 0 0 16px 0;
+    }
+    
+    /* کارت‌ها */
+    .cards {
+      display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap:calc(var(--spacing-unit) * 1.75);
+      gap: 16px;
     }
-
-    .card{
+    
+    .card {
       background: var(--md-sys-color-surface-container);
-      padding:calc(var(--spacing-unit) * 2);
-      border-radius:16px;
-      border:1px solid var(--md-sys-color-outline-variant);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border-radius: 16px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      padding: 16px;
+      box-shadow: var(--elevation-1);
       transition: all var(--transition-speed) ease;
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
+    
     .card::before {
       content: '';
       position: absolute;
@@ -277,155 +398,148 @@
       transform: scaleY(0);
       transition: transform var(--transition-speed) ease;
     }
-    .card:hover{ 
-      transform:translateY(-6px); 
-      box-shadow:0 12px 28px rgba(0,0,0,0.4);
+    
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--elevation-3);
       border-color: var(--md-sys-color-primary);
     }
+    
     .card:hover::before {
       transform: scaleY(1);
     }
-
-    .fn-title{
-      display:flex;
-      justify-content:space-between;
-      gap:calc(var(--spacing-unit));
-      align-items:center;
-      margin-bottom:calc(var(--spacing-unit) * 1.25);
+    
+    .fn-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 8px;
     }
-    .fn-title b{ 
-      font-size:16px; 
-      color:var(--md-sys-color-on-surface);
-      font-weight:600;
+    
+    .fn-title b {
+      font-size: 16px;
+      color: var(--md-sys-color-on-surface);
+      font-weight: 600;
     }
+    
     .fn-title span {
-      font-size:12px;
-      color:var(--md-sys-color-on-surface-variant);
+      font-size: 12px;
+      color: var(--md-sys-color-on-surface-variant);
       font-family: 'Courier New', monospace;
       background: var(--md-sys-color-surface-container-lowest);
       padding: 4px 8px;
       border-radius: 6px;
+      white-space: nowrap;
     }
-    .fn-desc{ 
-      color:var(--md-sys-color-on-surface-variant); 
-      font-size:14px; 
-      margin-bottom:calc(var(--spacing-unit) * 1.5); 
-      min-height:40px;
-      font-weight:400;
+    
+    .fn-desc {
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 14px;
+      margin-bottom: 12px;
       flex: 1;
     }
-    .fn-ex{
-      background:var(--md-sys-color-surface-container-lowest);
-      padding:calc(var(--spacing-unit) * 1.5);
-      border-radius:12px;
-      font-family: "Courier New", monospace;
-      font-size:13px;
-      color:var(--md-sys-color-on-surface);
-      overflow:auto;
-      border:1px solid var(--md-sys-color-outline-variant);
+    
+    .fn-ex {
+      background: var(--md-sys-color-surface-container-lowest);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: 12px;
+      padding: 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: var(--md-sys-color-on-surface);
+      overflow: auto;
       direction: ltr;
       text-align: left;
       cursor: pointer;
       transition: all var(--transition-speed) ease;
     }
+    
     .fn-ex:hover {
       background: var(--md-sys-color-surface-container);
     }
-
-    /* right: cheat sheet */
-    aside{
+    
+    /* سایدبار */
+    aside {
       background: var(--md-sys-color-surface-container-low);
-      padding:calc(var(--spacing-unit) * 2.5);
-      border-radius:20px;
-      border:1px solid var(--md-sys-color-outline-variant);
-      height:fit-content;
+      border-radius: 20px;
+      padding: 20px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      box-shadow: var(--elevation-1);
+      height: fit-content;
       position: sticky;
-      top:calc(var(--spacing-unit) * 2);
+      top: 20px;
     }
-    .aside-title{ 
-      font-size:18px; 
-      margin:0 0 calc(var(--spacing-unit) * 2) 0; 
-      color:var(--md-sys-color-primary);
-      font-weight:600;
+    
+    .aside-title {
+      font-size: 18px;
+      color: var(--md-sys-color-primary);
+      font-weight: 600;
+      margin: 0 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    ul.tip{ 
-      padding-right:calc(var(--spacing-unit) * 2.5); 
-      margin:0; 
-      color:var(--md-sys-color-on-surface-variant); 
-      font-size:14px;
+    
+    .aside-title i {
+      font-size: 20px;
     }
-    ul.tip li{ 
-      margin-bottom:calc(var(--spacing-unit) * 1.5); 
-      line-height:1.5;
+    
+    ul.tip {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    ul.tip li {
       position: relative;
+      padding-right: 24px;
+      margin-bottom: 12px;
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 14px;
+      line-height: 1.5;
     }
+    
     ul.tip li::before {
       content: '•';
       position: absolute;
-      right: -20px;
+      right: 0;
       color: var(--md-sys-color-primary);
       font-weight: bold;
     }
-
-    footer{
-      margin-top:calc(var(--spacing-unit) * 3);
-      text-align:center;
-      color:var(--md-sys-color-on-surface-variant);
-      font-size:14px;
-      padding-top:calc(var(--spacing-unit) * 2);
-      border-top:1px solid var(--md-sys-color-outline-variant);
+    
+    /* فوتر */
+    footer {
+      margin-top: 24px;
+      text-align: center;
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 14px;
+      padding-top: 16px;
+      border-top: 1px solid var(--md-sys-color-outline-variant);
     }
+    
     footer a {
       color: var(--md-sys-color-primary);
       text-decoration: none;
       font-weight: 500;
       transition: opacity var(--transition-speed) ease;
     }
+    
     footer a:hover {
       opacity: 0.8;
     }
-
-    /* فیلترها */
-    .filter-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: calc(var(--spacing-unit));
-      margin-top:calc(var(--spacing-unit) * 2);
-    }
     
-    .filter-btn {
-      background: var(--md-sys-color-surface-container-low);
-      color: var(--md-sys-color-on-surface-variant);
-      border: 1px solid var(--md-sys-color-outline);
-      padding: calc(var(--spacing-unit)) calc(var(--spacing-unit) * 1.75);
-      border-radius: 20px;
-      font-size:13px;
-      cursor: pointer;
-      transition: all var(--transition-speed) ease;
-      white-space: nowrap;
-    }
-    
-    .filter-btn:hover {
-      border-color: var(--md-sys-color-primary);
-    }
-    
-    .filter-btn.active {
-      background: var(--md-sys-color-primary-container);
-      color: var(--md-sys-color-on-primary-container);
-      border-color: var(--md-sys-color-primary);
-    }
-    
-    /* اسنک‌بار برای کپی */
+    /* اسنک‌بار */
     .snackbar {
       position: fixed;
-      bottom: 20px;
+      bottom: 24px;
       left: 50%;
       transform: translateX(-50%) translateY(100px);
       background: var(--md-sys-color-inverse-surface);
       color: var(--md-sys-color-inverse-on-surface);
       padding: 12px 24px;
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: var(--elevation-3);
       font-size: 14px;
       font-weight: 500;
       z-index: 1000;
@@ -438,34 +552,10 @@
       opacity: 1;
     }
     
-    /* دکمه موبایل برای فیلترها */
-    .mobile-filter-toggle {
-      display: none;
-      background: var(--md-sys-color-primary);
-      color: var(--md-sys-color-on-primary);
-      border: none;
-      padding: 10px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all var(--transition-speed) ease;
-      margin-bottom: calc(var(--spacing-unit) * 1.5);
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .mobile-filter-toggle:hover {
-      background: var(--md-sys-color-primary-container);
-      color: var(--md-sys-color-on-primary-container);
-    }
-    
     /* ریسپانسیو */
     @media (min-width: 769px) {
       main {
-        grid-template-columns: 1fr 380px;
+        grid-template-columns: 1fr 320px;
       }
       
       .header-top {
@@ -477,14 +567,14 @@
         align-items: center;
       }
       
-      .search {
+      .search-container {
         flex: 1;
       }
     }
     
     @media (max-width: 768px) {
       .container {
-        padding: calc(var(--spacing-unit) * 2);
+        padding: 16px;
         border-radius: 16px;
       }
       
@@ -502,27 +592,31 @@
       
       .filter-container {
         display: none;
-        margin-top: 0;
-        margin-bottom: calc(var(--spacing-unit) * 1.5);
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
       }
       
       .filter-container.active {
         display: flex;
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--md-sys-color-outline-variant);
       }
       
       aside {
         position: static;
-        margin-top: calc(var(--spacing-unit) * 2);
+        margin-top: 20px;
       }
       
       .fn-title {
         flex-direction: column;
         align-items: flex-start;
-        gap: calc(var(--spacing-unit));
       }
       
       .fn-title span {
         align-self: flex-end;
+        margin-top: 4px;
       }
     }
     
@@ -543,26 +637,12 @@
         font-size: 20px;
       }
       
-      .controls {
-        width: 100%;
-      }
-      
       .tags-container {
         justify-content: center;
       }
     }
     
-    /* انیمیشن‌ها */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .card {
-      animation: fadeIn 0.5s ease forwards;
-    }
-    
-    /* بهبود اسکرول */
+    /* اسکرولبار سفارشی */
     ::-webkit-scrollbar {
       width: 8px;
       height: 8px;
@@ -582,13 +662,23 @@
       background: var(--md-sys-color-outline);
     }
     
-    /* بهبود تمرکز */
+    /* تمرکز */
     *:focus {
       outline: 2px solid var(--md-sys-color-primary);
       outline-offset: 2px;
     }
     
-    /* بهبود دسترسی */
+    /* انیمیشن‌ها */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .card {
+      animation: fadeIn 0.5s ease forwards;
+    }
+    
+    /* دسترسی */
     .visually-hidden {
       position: absolute;
       width: 1px;
@@ -613,9 +703,11 @@
         </div>
       </div>
       <div class="controls">
-        <div class="search" aria-hidden="false">
-          <i class="ri-search-line search-icon"></i>
-          <input id="search" placeholder="جستجو (نام تابع / کاربرد / مثال) ..." aria-label="جستجوی توابع" />
+        <div class="search-container">
+          <div class="search" aria-hidden="false">
+            <i class="ri-search-line search-icon"></i>
+            <input id="search" placeholder="جستجو (نام تابع / کاربرد / مثال) ..." aria-label="جستجوی توابع" />
+          </div>
         </div>
         <div class="tags-container">
           <div class="tag">حسابداری</div>
@@ -647,7 +739,7 @@
         
         <!-- Group: جمع و خلاصه سازی -->
         <div class="group" data-group="aggregation">
-          <h2>جمع و خلاصه‌سازی</h2>
+          <h2><i class="ri-calculator-line"></i> جمع و خلاصه‌سازی</h2>
           <p>محاسبات تراز، جمع هزینه‌ها و خلاصه‌سازی اعداد</p>
           <div class="cards">
             <div class="card" data-keywords="sum جمع مجموع هزینه فروش">
@@ -690,7 +782,7 @@
 
         <!-- Group: جستجو و مرجع -->
         <div class="group" data-group="lookup">
-          <h2>جست‌وجو و مرجع</h2>
+          <h2><i class="ri-search-eye-line"></i> جست‌وجو و مرجع</h2>
           <p>برای وصل کردن جداول، ماتریس‌ها و ساخت گزارش‌های تلفیقی</p>
           <div class="cards">
             <div class="card" data-keywords="vlookup جستجوی عمودی VLOOKUP">
@@ -727,7 +819,7 @@
 
         <!-- Group: مالی -->
         <div class="group" data-group="financial">
-          <h2>توابع مالی</h2>
+          <h2><i class="ri-money-dollar-circle-line"></i> توابع مالی</h2>
           <p>محاسبه نرخ، اقساط، ارزش فعلی و جریان‌های نقدی</p>
           <div class="cards">
             <div class="card" data-keywords="npv ارزش فعلی خالص NPV">
@@ -788,7 +880,7 @@
 
         <!-- Group: تاریخ و زمان -->
         <div class="group" data-group="date">
-          <h2>توابع تاریخ و زمان</h2>
+          <h2><i class="ri-calendar-line"></i> توابع تاریخ و زمان</h2>
           <p>مهم برای محاسبه سررسیدها، سن حساب‌ها و دوره‌ها</p>
           <div class="cards">
             <div class="card" data-keywords="datedif اختلاف تاریخ DATEDIF">
@@ -837,7 +929,7 @@
 
         <!-- Group: شرایطی و منطقی -->
         <div class="group" data-group="conditional">
-          <h2>توابع شرطی و منطقی</h2>
+          <h2><i class="ri-code-s-slash-line"></i> توابع شرطی و منطقی</h2>
           <p>برای تحلیل شرطی، تخصیص حساب و اعتبارسنجی داده‌ها</p>
           <div class="cards">
             <div class="card" data-keywords="if شرط IF">
@@ -880,7 +972,7 @@
 
         <!-- Group: متنی و پاکسازی -->
         <div class="group" data-group="text">
-          <h2>توابع متنی و قالب‌بندی</h2>
+          <h2><i class="ri-text"></i> توابع متنی و قالب‌بندی</h2>
           <p>پاکسازی نام مشتری، جدا کردن کدها و آماده‌سازی گزارش</p>
           <div class="cards">
             <div class="card" data-keywords="text قالب بندی TEXT">
@@ -935,7 +1027,7 @@
 
         <!-- Group: گردکردن و مالیاتی -->
         <div class="group" data-group="rounding">
-          <h2>گردکردن و محاسبات دقیق</h2>
+          <h2><i class="ri-percent-line"></i> گردکردن و محاسبات دقیق</h2>
           <p>مهم برای محاسبه مالیات، گزارش نهایی و تسویه‌ها</p>
           <div class="cards">
             <div class="card" data-keywords="round گرد کردن ROUND">
@@ -972,7 +1064,7 @@
 
         <!-- Group: تحلیل داده -->
         <div class="group" data-group="analysis">
-          <h2>تحلیل داده و گزارش‌گیری</h2>
+          <h2><i class="ri-bar-chart-line"></i> تحلیل داده و گزارش‌گیری</h2>
           <p>توابع مفید برای تهیه داشبورد، جدول محوری (Pivot) و تحلیل هزینه</p>
           <div class="cards">
             <div class="card" data-keywords="pivot table pivot جدول محوری">
@@ -1021,7 +1113,7 @@
 
         <!-- Group: اطلاعات و خطاها -->
         <div class="group" data-group="information">
-          <h2>توابع اطلاعاتی و خطاها</h2>
+          <h2><i class="ri-information-line"></i> توابع اطلاعاتی و خطاها</h2>
           <p>برای بررسی نوع داده، سلول‌های خالی و مدیریت خطاها</p>
           <div class="cards">
             <div class="card" data-keywords="isblank خالی بودن ISBLANK">
@@ -1065,7 +1157,7 @@
       </section>
 
       <aside>
-        <div class="aside-title">نکات کلیدی برای حسابداران</div>
+        <div class="aside-title"><i class="ri-lightbulb-line"></i> نکات کلیدی برای حسابداران</div>
         <ul class="tip">
           <li><strong>همیشه</strong> داده‌ها را با <code>TRIM</code> و فرمت صحیح تاریخ پاکسازی کن تا جستجوها دقیق باشند</li>
           <li>برای جستجوهای پیچیده از <code>XLOOKUP</code> یا ترکیب <code>INDEX+MATCH</code> استفاده کن؛ <code>VLOOKUP</code> محدودیت به ستون سمت چپ دارد</li>
@@ -1074,7 +1166,7 @@
           <li>برای محاسبه مالیات و محاسبات ماهانه، از توابع تاریخ (<code>EDATE</code>, <code>DATEDIF</code>) به‌دقت استفاده کن</li>
           <li>برای تحلیل‌های پیشرفته، از توابع جدید اکسل مانند <code>FILTER</code>, <code>SORT</code>, <code>UNIQUE</code> استفاده کن</li>
           <li>برای جلوگیری از خطا در محاسبات، از <code>IFERROR</code> و توابع <code>IS</code> مانند <code>ISNUMBER</code> استفاده کن</li>
-          <li>برای گرد کردن مقادیر مالی، از <code>ROUND</code> به جای قالب‌بندی سلول استفاده کن تا در محاسبات بعدی دقت حفظ شود</li>
+          <li>برای گرد کردن مقادیر مالی، از <code>ROUND</code> به جای قالب‌بندی سلول استفاده کن تا در محالابات بعدی دقت حفظ شود</li>
         </ul>
       </aside>
     </main>
@@ -1171,6 +1263,12 @@
             });
           }
         }
+        
+        // بستن منوی فیلتر در موبایل پس از انتخاب
+        if (window.innerWidth <= 768) {
+          filterContainer.classList.remove('active');
+          mobileFilterToggle.innerHTML = '<i class="ri-filter-3-line"></i> فیلتر توابع';
+        }
       });
     });
     
@@ -1216,6 +1314,49 @@
         mobileFilterToggle.innerHTML = '<i class="ri-filter-3-line"></i> فیلتر توابع';
       }
     });
+    
+    // رفع باگ اسکرول در فیلترها
+    const filterContainerElement = document.querySelector('.filter-container');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    
+    filterContainerElement.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX - filterContainerElement.offsetLeft;
+      scrollLeft = filterContainerElement.scrollLeft;
+    });
+    
+    filterContainerElement.addEventListener('mouseleave', () => {
+      isDown = false;
+    });
+    
+    filterContainerElement.addEventListener('mouseup', () => {
+      isDown = false;
+    });
+    
+    filterContainerElement.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - filterContainerElement.offsetLeft;
+      const walk = (x - startX) * 2; // سرعت اسکرول
+      filterContainerElement.scrollLeft = scrollLeft - walk;
+    });
+    
+    // بهبود عملکرد در دستگاه‌های لمسی
+    let touchStartX = 0;
+    let touchScrollLeft = 0;
+    
+    filterContainerElement.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchScrollLeft = filterContainerElement.scrollLeft;
+    }, { passive: true });
+    
+    filterContainerElement.addEventListener('touchmove', (e) => {
+      const touchX = e.touches[0].clientX;
+      const walk = (touchStartX - touchX) * 2; // سرعت اسکرول
+      filterContainerElement.scrollLeft = touchScrollLeft + walk;
+    }, { passive: true });
   </script>
 </body>
 </html>
